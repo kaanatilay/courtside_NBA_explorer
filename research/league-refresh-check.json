@@ -1,0 +1,17 @@
+{
+  "state": "complete",
+  "phase": "finished",
+  "season": 2027,
+  "startedAt": "2026-11-02T22:23:24.089Z",
+  "correctionDays": 7,
+  "teamsTotal": 30,
+  "teamsChecked": 30,
+  "gamesTotal": 90,
+  "gamesChecked": 90,
+  "gamesDiscovered": 92,
+  "olderGamesReused": 2,
+  "added": 82,
+  "updated": 8,
+  "failures": [],
+  "finishedAt": "2026-11-02T22:23:38.695Z"
+}

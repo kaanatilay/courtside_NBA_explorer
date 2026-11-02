@@ -1,0 +1,363 @@
+{
+  "checkedAt": "2026-11-01T01:29:34.181Z",
+  "warning": "Exploratory team counts only. Full-game agreement cannot prove that every event belongs to the correct quarter. No player minutes or app integration.",
+  "results": [
+    {
+      "id": "401909285",
+      "source": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909285",
+      "dateUTC": "2026-10-31T02:00Z",
+      "plays": 518,
+      "unassigned": 6,
+      "comparisons": [
+        {
+          "team": "GS",
+          "expected": {
+            "pts": 112,
+            "ast": 31,
+            "oreb": 15,
+            "dreb": 29,
+            "blk": 5
+          },
+          "parsedTotals": {
+            "pts": 112,
+            "ast": 31,
+            "oreb": 15,
+            "dreb": 29,
+            "blk": 5
+          },
+          "differences": {
+            "pts": 0,
+            "ast": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "blk": 0
+          },
+          "pointPeriodsMatch": true,
+          "experimentalPeriods": {
+            "1": {
+              "pts": 15,
+              "ast": 5,
+              "oreb": 3,
+              "dreb": 4,
+              "blk": 0
+            },
+            "2": {
+              "pts": 38,
+              "ast": 12,
+              "oreb": 3,
+              "dreb": 9,
+              "blk": 4
+            },
+            "3": {
+              "pts": 32,
+              "ast": 5,
+              "oreb": 5,
+              "dreb": 7,
+              "blk": 1
+            },
+            "4": {
+              "pts": 27,
+              "ast": 9,
+              "oreb": 4,
+              "dreb": 9,
+              "blk": 0
+            }
+          }
+        },
+        {
+          "team": "LAL",
+          "expected": {
+            "pts": 95,
+            "ast": 18,
+            "oreb": 16,
+            "dreb": 29,
+            "blk": 11
+          },
+          "parsedTotals": {
+            "pts": 95,
+            "ast": 18,
+            "oreb": 16,
+            "dreb": 29,
+            "blk": 11
+          },
+          "differences": {
+            "pts": 0,
+            "ast": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "blk": 0
+          },
+          "pointPeriodsMatch": true,
+          "experimentalPeriods": {
+            "1": {
+              "pts": 38,
+              "ast": 10,
+              "oreb": 3,
+              "dreb": 10,
+              "blk": 4
+            },
+            "2": {
+              "pts": 15,
+              "ast": 3,
+              "oreb": 6,
+              "dreb": 4,
+              "blk": 2
+            },
+            "3": {
+              "pts": 27,
+              "ast": 2,
+              "oreb": 6,
+              "dreb": 8,
+              "blk": 4
+            },
+            "4": {
+              "pts": 15,
+              "ast": 3,
+              "oreb": 1,
+              "dreb": 7,
+              "blk": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "401704627",
+      "source": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401704627",
+      "dateUTC": "2024-10-22T23:30Z",
+      "plays": 390,
+      "unassigned": 6,
+      "comparisons": [
+        {
+          "team": "BOS",
+          "expected": {
+            "pts": 132,
+            "ast": 33,
+            "oreb": 11,
+            "dreb": 29,
+            "blk": 3
+          },
+          "parsedTotals": {
+            "pts": 132,
+            "ast": 33,
+            "oreb": 11,
+            "dreb": 29,
+            "blk": 3
+          },
+          "differences": {
+            "pts": 0,
+            "ast": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "blk": 0
+          },
+          "pointPeriodsMatch": true,
+          "experimentalPeriods": {
+            "1": {
+              "pts": 43,
+              "ast": 11,
+              "oreb": 3,
+              "dreb": 10,
+              "blk": 0
+            },
+            "2": {
+              "pts": 31,
+              "ast": 7,
+              "oreb": 3,
+              "dreb": 7,
+              "blk": 1
+            },
+            "3": {
+              "pts": 39,
+              "ast": 9,
+              "oreb": 2,
+              "dreb": 5,
+              "blk": 2
+            },
+            "4": {
+              "pts": 19,
+              "ast": 6,
+              "oreb": 3,
+              "dreb": 7,
+              "blk": 0
+            }
+          }
+        },
+        {
+          "team": "NY",
+          "expected": {
+            "pts": 109,
+            "ast": 20,
+            "oreb": 5,
+            "dreb": 29,
+            "blk": 3
+          },
+          "parsedTotals": {
+            "pts": 109,
+            "ast": 20,
+            "oreb": 5,
+            "dreb": 29,
+            "blk": 3
+          },
+          "differences": {
+            "pts": 0,
+            "ast": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "blk": 0
+          },
+          "pointPeriodsMatch": true,
+          "experimentalPeriods": {
+            "1": {
+              "pts": 24,
+              "ast": 4,
+              "oreb": 1,
+              "dreb": 6,
+              "blk": 1
+            },
+            "2": {
+              "pts": 31,
+              "ast": 4,
+              "oreb": 0,
+              "dreb": 8,
+              "blk": 0
+            },
+            "3": {
+              "pts": 32,
+              "ast": 8,
+              "oreb": 3,
+              "dreb": 5,
+              "blk": 1
+            },
+            "4": {
+              "pts": 22,
+              "ast": 4,
+              "oreb": 1,
+              "dreb": 10,
+              "blk": 1
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "401909880",
+      "source": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909880",
+      "dateUTC": "2026-10-28T03:00Z",
+      "plays": 511,
+      "unassigned": 8,
+      "comparisons": [
+        {
+          "team": "LAL",
+          "expected": {
+            "pts": 129,
+            "ast": 28,
+            "oreb": 6,
+            "dreb": 25,
+            "blk": 4
+          },
+          "parsedTotals": {
+            "pts": 129,
+            "ast": 28,
+            "oreb": 6,
+            "dreb": 25,
+            "blk": 4
+          },
+          "differences": {
+            "pts": 0,
+            "ast": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "blk": 0
+          },
+          "pointPeriodsMatch": true,
+          "experimentalPeriods": {
+            "1": {
+              "pts": 38,
+              "ast": 8,
+              "oreb": 2,
+              "dreb": 4,
+              "blk": 1
+            },
+            "2": {
+              "pts": 35,
+              "ast": 8,
+              "oreb": 0,
+              "dreb": 4,
+              "blk": 0
+            },
+            "3": {
+              "pts": 30,
+              "ast": 5,
+              "oreb": 1,
+              "dreb": 11,
+              "blk": 2
+            },
+            "4": {
+              "pts": 26,
+              "ast": 7,
+              "oreb": 3,
+              "dreb": 6,
+              "blk": 1
+            }
+          }
+        },
+        {
+          "team": "POR",
+          "expected": {
+            "pts": 136,
+            "ast": 30,
+            "oreb": 7,
+            "dreb": 31,
+            "blk": 2
+          },
+          "parsedTotals": {
+            "pts": 136,
+            "ast": 30,
+            "oreb": 7,
+            "dreb": 31,
+            "blk": 2
+          },
+          "differences": {
+            "pts": 0,
+            "ast": 0,
+            "oreb": 0,
+            "dreb": 0,
+            "blk": 0
+          },
+          "pointPeriodsMatch": true,
+          "experimentalPeriods": {
+            "1": {
+              "pts": 32,
+              "ast": 6,
+              "oreb": 0,
+              "dreb": 6,
+              "blk": 0
+            },
+            "2": {
+              "pts": 36,
+              "ast": 8,
+              "oreb": 1,
+              "dreb": 6,
+              "blk": 0
+            },
+            "3": {
+              "pts": 34,
+              "ast": 9,
+              "oreb": 2,
+              "dreb": 10,
+              "blk": 1
+            },
+            "4": {
+              "pts": 34,
+              "ast": 7,
+              "oreb": 4,
+              "dreb": 9,
+              "blk": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

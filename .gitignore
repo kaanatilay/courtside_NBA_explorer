@@ -1,0 +1,9 @@
+node_modules/
+.npm-cache/
+dist/
+.data-cache/
+.local-data/
+PROJECT_HANDOFF.md
+.env
+.env.*
+!.env.example

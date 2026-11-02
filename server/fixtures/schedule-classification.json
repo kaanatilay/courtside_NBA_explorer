@@ -1,0 +1,142 @@
+{
+  "provenance": "Extracted from coverage-audit-results.json; competition participants are controlled test IDs, metadata/notes are retained from ESPN. Not a complete raw response.",
+  "events": [
+    {
+      "id": "401734908",
+      "date": "2024-12-18T01:30Z",
+      "name": "Milwaukee Bucks at Oklahoma City Thunder",
+      "season": {
+        "year": 2025,
+        "displayName": "2024-25"
+      },
+      "seasonType": {
+        "id": "2",
+        "type": 2,
+        "name": "Regular Season",
+        "abbreviation": "reg"
+      },
+      "completed": true,
+      "notes": [
+        {
+          "type": "event",
+          "headline": "NBA Cup Championship"
+        }
+      ],
+      "competitions": [
+        {
+          "notes": [
+            {
+              "type": "event",
+              "headline": "NBA Cup Championship"
+            }
+          ],
+          "status": {
+            "type": {
+              "completed": true
+            }
+          },
+          "competitors": [
+            {
+              "team": {
+                "id": "1"
+              }
+            },
+            {
+              "team": {
+                "id": "2"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "401809839",
+      "date": "2025-12-17T01:30Z",
+      "name": "San Antonio Spurs at New York Knicks",
+      "season": {
+        "year": 2026,
+        "displayName": "2025-26"
+      },
+      "seasonType": {
+        "id": "2",
+        "type": 2,
+        "name": "Regular Season",
+        "abbreviation": "reg"
+      },
+      "completed": true,
+      "notes": [
+        {
+          "type": "event",
+          "headline": "NBA Cup Championship"
+        }
+      ],
+      "competitions": [
+        {
+          "notes": [
+            {
+              "type": "event",
+              "headline": "NBA Cup Championship"
+            }
+          ],
+          "status": {
+            "type": {
+              "completed": true
+            }
+          },
+          "competitors": [
+            {
+              "team": {
+                "id": "1"
+              }
+            },
+            {
+              "team": {
+                "id": "2"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "401704627",
+      "date": "2024-10-22T23:30Z",
+      "name": "New York Knicks at Boston Celtics",
+      "season": {
+        "year": 2025,
+        "displayName": "2024-25"
+      },
+      "seasonType": {
+        "id": "2",
+        "type": 2,
+        "name": "Regular Season",
+        "abbreviation": "reg"
+      },
+      "completed": true,
+      "notes": [],
+      "competitions": [
+        {
+          "notes": [],
+          "status": {
+            "type": {
+              "completed": true
+            }
+          },
+          "competitors": [
+            {
+              "team": {
+                "id": "2"
+              }
+            },
+            {
+              "team": {
+                "id": "18"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,800 @@
+{
+  "scope": "All 30 teams, three seasons, regular season and postseason schedule requests; game samples from six division representatives, not exhaustive box-score coverage.",
+  "checkedAt": "2026-11-02T22:05:12.792Z",
+  "scheduleRequests": 180,
+  "gameRequests": 25,
+  "gameSuccess": 24,
+  "sampledTeamRecords": 48,
+  "summaries": [
+    {
+      "season": 2025,
+      "type": 2,
+      "uniqueEvents": 1236,
+      "completed": 1231,
+      "cupFinals": [
+        "401734908"
+      ],
+      "completedExcludingCup": 1230,
+      "notListedTwice": [],
+      "perTeamCompletedExcludingCup": [
+        {
+          "team": "ATL",
+          "count": 82
+        },
+        {
+          "team": "BOS",
+          "count": 82
+        },
+        {
+          "team": "BKN",
+          "count": 82
+        },
+        {
+          "team": "CHA",
+          "count": 82
+        },
+        {
+          "team": "CHI",
+          "count": 82
+        },
+        {
+          "team": "CLE",
+          "count": 82
+        },
+        {
+          "team": "DAL",
+          "count": 82
+        },
+        {
+          "team": "DEN",
+          "count": 82
+        },
+        {
+          "team": "DET",
+          "count": 82
+        },
+        {
+          "team": "GS",
+          "count": 82
+        },
+        {
+          "team": "HOU",
+          "count": 82
+        },
+        {
+          "team": "IND",
+          "count": 82
+        },
+        {
+          "team": "LAC",
+          "count": 82
+        },
+        {
+          "team": "LAL",
+          "count": 82
+        },
+        {
+          "team": "MEM",
+          "count": 82
+        },
+        {
+          "team": "MIA",
+          "count": 82
+        },
+        {
+          "team": "MIL",
+          "count": 82
+        },
+        {
+          "team": "MIN",
+          "count": 82
+        },
+        {
+          "team": "NO",
+          "count": 82
+        },
+        {
+          "team": "NY",
+          "count": 82
+        },
+        {
+          "team": "OKC",
+          "count": 82
+        },
+        {
+          "team": "ORL",
+          "count": 82
+        },
+        {
+          "team": "PHI",
+          "count": 82
+        },
+        {
+          "team": "PHX",
+          "count": 82
+        },
+        {
+          "team": "POR",
+          "count": 82
+        },
+        {
+          "team": "SAC",
+          "count": 82
+        },
+        {
+          "team": "SA",
+          "count": 82
+        },
+        {
+          "team": "TOR",
+          "count": 82
+        },
+        {
+          "team": "UTAH",
+          "count": 82
+        },
+        {
+          "team": "WSH",
+          "count": 82
+        }
+      ]
+    },
+    {
+      "season": 2025,
+      "type": 3,
+      "uniqueEvents": 84,
+      "completed": 84,
+      "cupFinals": [],
+      "completedExcludingCup": 84,
+      "notListedTwice": [],
+      "perTeamCompletedExcludingCup": [
+        {
+          "team": "ATL",
+          "count": 0
+        },
+        {
+          "team": "BOS",
+          "count": 11
+        },
+        {
+          "team": "BKN",
+          "count": 0
+        },
+        {
+          "team": "CHA",
+          "count": 0
+        },
+        {
+          "team": "CHI",
+          "count": 0
+        },
+        {
+          "team": "CLE",
+          "count": 9
+        },
+        {
+          "team": "DAL",
+          "count": 0
+        },
+        {
+          "team": "DEN",
+          "count": 14
+        },
+        {
+          "team": "DET",
+          "count": 6
+        },
+        {
+          "team": "GS",
+          "count": 12
+        },
+        {
+          "team": "HOU",
+          "count": 7
+        },
+        {
+          "team": "IND",
+          "count": 23
+        },
+        {
+          "team": "LAC",
+          "count": 7
+        },
+        {
+          "team": "LAL",
+          "count": 5
+        },
+        {
+          "team": "MEM",
+          "count": 4
+        },
+        {
+          "team": "MIA",
+          "count": 4
+        },
+        {
+          "team": "MIL",
+          "count": 5
+        },
+        {
+          "team": "MIN",
+          "count": 15
+        },
+        {
+          "team": "NO",
+          "count": 0
+        },
+        {
+          "team": "NY",
+          "count": 18
+        },
+        {
+          "team": "OKC",
+          "count": 23
+        },
+        {
+          "team": "ORL",
+          "count": 5
+        },
+        {
+          "team": "PHI",
+          "count": 0
+        },
+        {
+          "team": "PHX",
+          "count": 0
+        },
+        {
+          "team": "POR",
+          "count": 0
+        },
+        {
+          "team": "SAC",
+          "count": 0
+        },
+        {
+          "team": "SA",
+          "count": 0
+        },
+        {
+          "team": "TOR",
+          "count": 0
+        },
+        {
+          "team": "UTAH",
+          "count": 0
+        },
+        {
+          "team": "WSH",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "season": 2026,
+      "type": 2,
+      "uniqueEvents": 1235,
+      "completed": 1231,
+      "cupFinals": [
+        "401809839"
+      ],
+      "completedExcludingCup": 1230,
+      "notListedTwice": [],
+      "perTeamCompletedExcludingCup": [
+        {
+          "team": "ATL",
+          "count": 82
+        },
+        {
+          "team": "BOS",
+          "count": 82
+        },
+        {
+          "team": "BKN",
+          "count": 82
+        },
+        {
+          "team": "CHA",
+          "count": 82
+        },
+        {
+          "team": "CHI",
+          "count": 82
+        },
+        {
+          "team": "CLE",
+          "count": 82
+        },
+        {
+          "team": "DAL",
+          "count": 82
+        },
+        {
+          "team": "DEN",
+          "count": 82
+        },
+        {
+          "team": "DET",
+          "count": 82
+        },
+        {
+          "team": "GS",
+          "count": 82
+        },
+        {
+          "team": "HOU",
+          "count": 82
+        },
+        {
+          "team": "IND",
+          "count": 82
+        },
+        {
+          "team": "LAC",
+          "count": 82
+        },
+        {
+          "team": "LAL",
+          "count": 82
+        },
+        {
+          "team": "MEM",
+          "count": 82
+        },
+        {
+          "team": "MIA",
+          "count": 82
+        },
+        {
+          "team": "MIL",
+          "count": 82
+        },
+        {
+          "team": "MIN",
+          "count": 82
+        },
+        {
+          "team": "NO",
+          "count": 82
+        },
+        {
+          "team": "NY",
+          "count": 82
+        },
+        {
+          "team": "OKC",
+          "count": 82
+        },
+        {
+          "team": "ORL",
+          "count": 82
+        },
+        {
+          "team": "PHI",
+          "count": 82
+        },
+        {
+          "team": "PHX",
+          "count": 82
+        },
+        {
+          "team": "POR",
+          "count": 82
+        },
+        {
+          "team": "SAC",
+          "count": 82
+        },
+        {
+          "team": "SA",
+          "count": 82
+        },
+        {
+          "team": "TOR",
+          "count": 82
+        },
+        {
+          "team": "UTAH",
+          "count": 82
+        },
+        {
+          "team": "WSH",
+          "count": 82
+        }
+      ]
+    },
+    {
+      "season": 2026,
+      "type": 3,
+      "uniqueEvents": 85,
+      "completed": 85,
+      "cupFinals": [],
+      "completedExcludingCup": 85,
+      "notListedTwice": [],
+      "perTeamCompletedExcludingCup": [
+        {
+          "team": "ATL",
+          "count": 6
+        },
+        {
+          "team": "BOS",
+          "count": 7
+        },
+        {
+          "team": "BKN",
+          "count": 0
+        },
+        {
+          "team": "CHA",
+          "count": 0
+        },
+        {
+          "team": "CHI",
+          "count": 0
+        },
+        {
+          "team": "CLE",
+          "count": 18
+        },
+        {
+          "team": "DAL",
+          "count": 0
+        },
+        {
+          "team": "DEN",
+          "count": 6
+        },
+        {
+          "team": "DET",
+          "count": 14
+        },
+        {
+          "team": "GS",
+          "count": 0
+        },
+        {
+          "team": "HOU",
+          "count": 6
+        },
+        {
+          "team": "IND",
+          "count": 0
+        },
+        {
+          "team": "LAC",
+          "count": 0
+        },
+        {
+          "team": "LAL",
+          "count": 10
+        },
+        {
+          "team": "MEM",
+          "count": 0
+        },
+        {
+          "team": "MIA",
+          "count": 0
+        },
+        {
+          "team": "MIL",
+          "count": 0
+        },
+        {
+          "team": "MIN",
+          "count": 12
+        },
+        {
+          "team": "NO",
+          "count": 0
+        },
+        {
+          "team": "NY",
+          "count": 19
+        },
+        {
+          "team": "OKC",
+          "count": 15
+        },
+        {
+          "team": "ORL",
+          "count": 7
+        },
+        {
+          "team": "PHI",
+          "count": 11
+        },
+        {
+          "team": "PHX",
+          "count": 4
+        },
+        {
+          "team": "POR",
+          "count": 5
+        },
+        {
+          "team": "SAC",
+          "count": 0
+        },
+        {
+          "team": "SA",
+          "count": 23
+        },
+        {
+          "team": "TOR",
+          "count": 7
+        },
+        {
+          "team": "UTAH",
+          "count": 0
+        },
+        {
+          "team": "WSH",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "season": 2027,
+      "type": 2,
+      "uniqueEvents": 1200,
+      "completed": 92,
+      "cupFinals": [],
+      "completedExcludingCup": 92,
+      "notListedTwice": [],
+      "perTeamCompletedExcludingCup": [
+        {
+          "team": "ATL",
+          "count": 7
+        },
+        {
+          "team": "BOS",
+          "count": 6
+        },
+        {
+          "team": "BKN",
+          "count": 6
+        },
+        {
+          "team": "CHA",
+          "count": 7
+        },
+        {
+          "team": "CHI",
+          "count": 6
+        },
+        {
+          "team": "CLE",
+          "count": 6
+        },
+        {
+          "team": "DAL",
+          "count": 6
+        },
+        {
+          "team": "DEN",
+          "count": 5
+        },
+        {
+          "team": "DET",
+          "count": 6
+        },
+        {
+          "team": "GS",
+          "count": 7
+        },
+        {
+          "team": "HOU",
+          "count": 7
+        },
+        {
+          "team": "IND",
+          "count": 7
+        },
+        {
+          "team": "LAC",
+          "count": 6
+        },
+        {
+          "team": "LAL",
+          "count": 7
+        },
+        {
+          "team": "MEM",
+          "count": 6
+        },
+        {
+          "team": "MIA",
+          "count": 6
+        },
+        {
+          "team": "MIL",
+          "count": 6
+        },
+        {
+          "team": "MIN",
+          "count": 7
+        },
+        {
+          "team": "NO",
+          "count": 6
+        },
+        {
+          "team": "NY",
+          "count": 6
+        },
+        {
+          "team": "OKC",
+          "count": 6
+        },
+        {
+          "team": "ORL",
+          "count": 6
+        },
+        {
+          "team": "PHI",
+          "count": 7
+        },
+        {
+          "team": "PHX",
+          "count": 4
+        },
+        {
+          "team": "POR",
+          "count": 5
+        },
+        {
+          "team": "SAC",
+          "count": 6
+        },
+        {
+          "team": "SA",
+          "count": 6
+        },
+        {
+          "team": "TOR",
+          "count": 6
+        },
+        {
+          "team": "UTAH",
+          "count": 6
+        },
+        {
+          "team": "WSH",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "season": 2027,
+      "type": 3,
+      "uniqueEvents": 0,
+      "completed": 0,
+      "cupFinals": [],
+      "completedExcludingCup": 0,
+      "notListedTwice": [],
+      "perTeamCompletedExcludingCup": [
+        {
+          "team": "ATL",
+          "count": 0
+        },
+        {
+          "team": "BOS",
+          "count": 0
+        },
+        {
+          "team": "BKN",
+          "count": 0
+        },
+        {
+          "team": "CHA",
+          "count": 0
+        },
+        {
+          "team": "CHI",
+          "count": 0
+        },
+        {
+          "team": "CLE",
+          "count": 0
+        },
+        {
+          "team": "DAL",
+          "count": 0
+        },
+        {
+          "team": "DEN",
+          "count": 0
+        },
+        {
+          "team": "DET",
+          "count": 0
+        },
+        {
+          "team": "GS",
+          "count": 0
+        },
+        {
+          "team": "HOU",
+          "count": 0
+        },
+        {
+          "team": "IND",
+          "count": 0
+        },
+        {
+          "team": "LAC",
+          "count": 0
+        },
+        {
+          "team": "LAL",
+          "count": 0
+        },
+        {
+          "team": "MEM",
+          "count": 0
+        },
+        {
+          "team": "MIA",
+          "count": 0
+        },
+        {
+          "team": "MIL",
+          "count": 0
+        },
+        {
+          "team": "MIN",
+          "count": 0
+        },
+        {
+          "team": "NO",
+          "count": 0
+        },
+        {
+          "team": "NY",
+          "count": 0
+        },
+        {
+          "team": "OKC",
+          "count": 0
+        },
+        {
+          "team": "ORL",
+          "count": 0
+        },
+        {
+          "team": "PHI",
+          "count": 0
+        },
+        {
+          "team": "PHX",
+          "count": 0
+        },
+        {
+          "team": "POR",
+          "count": 0
+        },
+        {
+          "team": "SAC",
+          "count": 0
+        },
+        {
+          "team": "SA",
+          "count": 0
+        },
+        {
+          "team": "TOR",
+          "count": 0
+        },
+        {
+          "team": "UTAH",
+          "count": 0
+        },
+        {
+          "team": "WSH",
+          "count": 0
+        }
+      ]
+    }
+  ]
+}

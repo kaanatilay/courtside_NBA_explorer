@@ -1,0 +1,1524 @@
+{
+  "checkedAtUTC": "2026-11-01T02:27:27.248Z",
+  "scope": "Four selected games; folder presence is not completeness. No app integration.",
+  "sourcePurpose": "The source captures a one-second window at period starts for lineup reconstruction. validTeamTotals tests suitability as FULL-quarter totals, not correctness as a lineup snapshot.",
+  "sourceExplanation": "https://github.com/sportsdataverse/sportsdataverse-py/blob/main/sportsdataverse/scrape/stats/periods.py",
+  "assets": [
+    {
+      "source": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/nba_stats_team_boxscores/team_boxscores_2024.csv",
+      "season": 2024,
+      "rows": 2638,
+      "games": 1319,
+      "headers": [
+        "team_id",
+        "team_city",
+        "team_name",
+        "team_tricode",
+        "team_slug",
+        "side",
+        "minutes",
+        "field_goals_made",
+        "field_goals_attempted",
+        "field_goals_percentage",
+        "three_pointers_made",
+        "three_pointers_attempted",
+        "three_pointers_percentage",
+        "free_throws_made",
+        "free_throws_attempted",
+        "free_throws_percentage",
+        "rebounds_offensive",
+        "rebounds_defensive",
+        "rebounds_total",
+        "assists",
+        "steals",
+        "blocks",
+        "turnovers",
+        "fouls_personal",
+        "points",
+        "plus_minus_points",
+        "game_id",
+        "season",
+        "season_type_id"
+      ],
+      "containsPeriodColumn": false
+    },
+    {
+      "source": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/nba_stats_team_boxscores/team_boxscores_2025.csv",
+      "season": 2025,
+      "rows": 2642,
+      "games": 1321,
+      "headers": [
+        "team_id",
+        "team_city",
+        "team_name",
+        "team_tricode",
+        "team_slug",
+        "side",
+        "minutes",
+        "field_goals_made",
+        "field_goals_attempted",
+        "field_goals_percentage",
+        "three_pointers_made",
+        "three_pointers_attempted",
+        "three_pointers_percentage",
+        "free_throws_made",
+        "free_throws_attempted",
+        "free_throws_percentage",
+        "rebounds_offensive",
+        "rebounds_defensive",
+        "rebounds_total",
+        "assists",
+        "steals",
+        "blocks",
+        "turnovers",
+        "fouls_personal",
+        "points",
+        "plus_minus_points",
+        "game_id",
+        "season",
+        "season_type_id"
+      ],
+      "containsPeriodColumn": false
+    },
+    {
+      "source": "https://github.com/sportsdataverse/sportsdataverse-data/releases/download/nba_stats_team_boxscores/team_boxscores_2027.csv",
+      "season": 2027,
+      "rows": 162,
+      "games": 81,
+      "headers": [
+        "team_id",
+        "team_city",
+        "team_name",
+        "team_tricode",
+        "team_slug",
+        "side",
+        "minutes",
+        "field_goals_made",
+        "field_goals_attempted",
+        "field_goals_percentage",
+        "three_pointers_made",
+        "three_pointers_attempted",
+        "three_pointers_percentage",
+        "free_throws_made",
+        "free_throws_attempted",
+        "free_throws_percentage",
+        "rebounds_offensive",
+        "rebounds_defensive",
+        "rebounds_total",
+        "assists",
+        "steals",
+        "blocks",
+        "turnovers",
+        "fouls_personal",
+        "points",
+        "plus_minus_points",
+        "game_id",
+        "season",
+        "season_type_id"
+      ],
+      "containsPeriodColumn": false
+    }
+  ],
+  "metadata": [
+    {
+      "name": "team_boxscores_2024.csv",
+      "bytes": 356488,
+      "updatedAt": "2026-09-30T23:34:57Z"
+    },
+    {
+      "name": "team_boxscores_2025.csv",
+      "bytes": 357762,
+      "updatedAt": "2026-10-01T00:30:43Z"
+    },
+    {
+      "name": "team_boxscores_2027.csv",
+      "bytes": 22210,
+      "updatedAt": "2026-10-31T12:51:41Z"
+    }
+  ],
+  "results": [
+    {
+      "season": 2025,
+      "id": "0022400061",
+      "espnId": "401704627",
+      "reason": "Known historical Celtics–Knicks game",
+      "source": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-stats-raw/main/nba_stats/json/boxscoretraditionalv3_period/2025/0022400061.json",
+      "periodKeys": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "sides": [
+        {
+          "team": "BOS",
+          "expected": {
+            "points": 132,
+            "assists": 33,
+            "reboundsOffensive": 11,
+            "reboundsDefensive": 29,
+            "blocks": 3
+          },
+          "summedPeriods": {
+            "points": 0,
+            "assists": 0,
+            "reboundsOffensive": 0,
+            "reboundsDefensive": 0,
+            "blocks": 0
+          },
+          "differences": {
+            "points": -132,
+            "assists": -33,
+            "reboundsOffensive": -11,
+            "reboundsDefensive": -29,
+            "blocks": -3
+          },
+          "periodRows": [
+            {
+              "period": 1,
+              "capturedAt": "2026-07-23T19:19:23.1923Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:00"
+            },
+            {
+              "period": 2,
+              "capturedAt": "2026-07-23T19:19:24.1924Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:10"
+            },
+            {
+              "period": 3,
+              "capturedAt": "2026-07-23T19:19:24.1924Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:08"
+            },
+            {
+              "period": 4,
+              "capturedAt": "2026-07-23T19:19:25.1925Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:01"
+            }
+          ],
+          "espnPeriodPoints": [
+            43,
+            31,
+            39,
+            19
+          ],
+          "espnQuarterPointsMatch": false,
+          "playerComparisons": [
+            {
+              "id": 1627759,
+              "name": "Jaylen Brown",
+              "fullGamePoints": 23,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1794,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 1628369,
+              "name": "Jayson Tatum",
+              "fullGamePoints": 37,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1818,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 201143,
+              "name": "Al Horford",
+              "fullGamePoints": 11,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1565,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 1628401,
+              "name": "Derrick White",
+              "fullGamePoints": 24,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1598,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 201950,
+              "name": "Jrue Holiday",
+              "fullGamePoints": 18,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1831,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1628436,
+              "name": "Luke Kornet",
+              "fullGamePoints": 4,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1159,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 1630202,
+              "name": "Payton Pritchard",
+              "fullGamePoints": 3,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1498,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 1630573,
+              "name": "Sam Hauser",
+              "fullGamePoints": 10,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1450,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 1630214,
+              "name": "Xavier Tillman",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1062,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1641775,
+              "name": "Jordan Walsh",
+              "fullGamePoints": 0,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 365,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1629674,
+              "name": "Neemias Queta",
+              "fullGamePoints": 0,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 260,
+              "summedPeriodSeconds": 0
+            }
+          ]
+        },
+        {
+          "team": "NYK",
+          "expected": {
+            "points": 109,
+            "assists": 20,
+            "reboundsOffensive": 5,
+            "reboundsDefensive": 29,
+            "blocks": 3
+          },
+          "summedPeriods": {
+            "points": 0,
+            "assists": 0,
+            "reboundsOffensive": 0,
+            "reboundsDefensive": 0,
+            "blocks": 0
+          },
+          "differences": {
+            "points": -109,
+            "assists": -20,
+            "reboundsOffensive": -5,
+            "reboundsDefensive": -29,
+            "blocks": -3
+          },
+          "periodRows": [
+            {
+              "period": 1,
+              "capturedAt": "2026-07-23T19:19:23.1923Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:00"
+            },
+            {
+              "period": 2,
+              "capturedAt": "2026-07-23T19:19:24.1924Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:10"
+            },
+            {
+              "period": 3,
+              "capturedAt": "2026-07-23T19:19:24.1924Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:08"
+            },
+            {
+              "period": 4,
+              "capturedAt": "2026-07-23T19:19:25.1925Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:01"
+            }
+          ],
+          "espnPeriodPoints": [
+            24,
+            31,
+            32,
+            22
+          ],
+          "espnQuarterPointsMatch": false,
+          "playerComparisons": [
+            {
+              "id": 1628384,
+              "name": "OG Anunoby",
+              "fullGamePoints": 4,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2050,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1628404,
+              "name": "Josh Hart",
+              "fullGamePoints": 12,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1470,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 1626157,
+              "name": "Karl-Anthony Towns",
+              "fullGamePoints": 12,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1417,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1628969,
+              "name": "Mikal Bridges",
+              "fullGamePoints": 16,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2077,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1628973,
+              "name": "Jalen Brunson",
+              "fullGamePoints": 22,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1470,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 1630579,
+              "name": "Jericho Sims",
+              "fullGamePoints": 4,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1463,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1630540,
+              "name": "Miles McBride",
+              "fullGamePoints": 22,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1551,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 1626166,
+              "name": "Cameron Payne",
+              "fullGamePoints": 11,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1243,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 1642359,
+              "name": "Pacôme Dadiet",
+              "fullGamePoints": 3,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 803,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1630574,
+              "name": "Ariel Hukporti",
+              "fullGamePoints": 0,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 365,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1642278,
+              "name": "Tyler Kolek",
+              "fullGamePoints": 3,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 324,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1631210,
+              "name": "Jacob Toppin",
+              "fullGamePoints": 0,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 167,
+              "summedPeriodSeconds": 0
+            }
+          ]
+        }
+      ],
+      "validTeamTotals": false
+    },
+    {
+      "season": 2027,
+      "id": "0022600023",
+      "espnId": "401909285",
+      "reason": "Recent Lakers–Warriors game",
+      "source": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-stats-raw/main/nba_stats/json/boxscoretraditionalv3_period/2027/0022600023.json",
+      "periodKeys": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "sides": [
+        {
+          "team": "GSW",
+          "expected": {
+            "points": 112,
+            "assists": 31,
+            "reboundsOffensive": 15,
+            "reboundsDefensive": 29,
+            "blocks": 5
+          },
+          "summedPeriods": {
+            "points": 0,
+            "assists": 0,
+            "reboundsOffensive": 0,
+            "reboundsDefensive": 0,
+            "blocks": 0
+          },
+          "differences": {
+            "points": -112,
+            "assists": -31,
+            "reboundsOffensive": -15,
+            "reboundsDefensive": -29,
+            "blocks": -5
+          },
+          "periodRows": [
+            {
+              "period": 1,
+              "capturedAt": "2026-10-31T12:13:29.1329Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:00"
+            },
+            {
+              "period": 2,
+              "capturedAt": "2026-10-31T12:13:30.133Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:04"
+            },
+            {
+              "period": 3,
+              "capturedAt": "2026-10-31T12:13:31.1331Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:03"
+            },
+            {
+              "period": 4,
+              "capturedAt": "2026-10-31T12:13:31.1331Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:17"
+            }
+          ],
+          "espnPeriodPoints": [
+            15,
+            38,
+            32,
+            27
+          ],
+          "espnQuarterPointsMatch": false,
+          "playerComparisons": [
+            {
+              "id": 1630611,
+              "name": "Gui Santos",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 981,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1642865,
+              "name": "Yaxel Lendeborg",
+              "fullGamePoints": 6,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1454,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 203110,
+              "name": "Draymond Green",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1901,
+              "summedPeriodSeconds": 5
+            },
+            {
+              "id": 1641764,
+              "name": "Brandin Podziemski",
+              "fullGamePoints": 21,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2001,
+              "summedPeriodSeconds": 5
+            },
+            {
+              "id": 201939,
+              "name": "Stephen Curry",
+              "fullGamePoints": 31,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1858,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1627777,
+              "name": "Georges Niang",
+              "fullGamePoints": 11,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1118,
+              "summedPeriodSeconds": 3
+            },
+            {
+              "id": 1627780,
+              "name": "Gary Payton II",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 463,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1629001,
+              "name": "De'Anthony Melton",
+              "fullGamePoints": 16,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1259,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 1630314,
+              "name": "Brandon Williams",
+              "fullGamePoints": 9,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 995,
+              "summedPeriodSeconds": 3
+            },
+            {
+              "id": 201143,
+              "name": "Al Horford",
+              "fullGamePoints": 3,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1013,
+              "summedPeriodSeconds": 2
+            },
+            {
+              "id": 1642954,
+              "name": "Will Richard",
+              "fullGamePoints": 3,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 799,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1629646,
+              "name": "Charles Bassey",
+              "fullGamePoints": 6,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 525,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1642502,
+              "name": "Malevy Leons",
+              "fullGamePoints": 0,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 17,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1643018,
+              "name": "LJ Cryer",
+              "fullGamePoints": 0,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 17,
+              "summedPeriodSeconds": 0
+            }
+          ]
+        },
+        {
+          "team": "LAL",
+          "expected": {
+            "points": 95,
+            "assists": 18,
+            "reboundsOffensive": 16,
+            "reboundsDefensive": 29,
+            "blocks": 11
+          },
+          "summedPeriods": {
+            "points": 0,
+            "assists": 0,
+            "reboundsOffensive": 0,
+            "reboundsDefensive": 0,
+            "blocks": 0
+          },
+          "differences": {
+            "points": -95,
+            "assists": -18,
+            "reboundsOffensive": -16,
+            "reboundsDefensive": -29,
+            "blocks": -11
+          },
+          "periodRows": [
+            {
+              "period": 1,
+              "capturedAt": "2026-10-31T12:13:29.1329Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:00"
+            },
+            {
+              "period": 2,
+              "capturedAt": "2026-10-31T12:13:30.133Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:04"
+            },
+            {
+              "period": 3,
+              "capturedAt": "2026-10-31T12:13:31.1331Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:03"
+            },
+            {
+              "period": 4,
+              "capturedAt": "2026-10-31T12:13:31.1331Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:17"
+            }
+          ],
+          "espnPeriodPoints": [
+            38,
+            15,
+            27,
+            15
+          ],
+          "espnQuarterPointsMatch": false,
+          "playerComparisons": [
+            {
+              "id": 1629680,
+              "name": "Matisse Thybulle",
+              "fullGamePoints": 10,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1685,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1631222,
+              "name": "Jake LaRavia",
+              "fullGamePoints": 10,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1693,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1631117,
+              "name": "Walker Kessler",
+              "fullGamePoints": 10,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1852,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1630559,
+              "name": "Austin Reaves",
+              "fullGamePoints": 21,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2240,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1629029,
+              "name": "Luka Dončić",
+              "fullGamePoints": 37,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2241,
+              "summedPeriodSeconds": 5
+            },
+            {
+              "id": 1629656,
+              "name": "Quentin Grimes",
+              "fullGamePoints": 3,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1583,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1630572,
+              "name": "Sandro Mamukelashvili",
+              "fullGamePoints": 4,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1177,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1629020,
+              "name": "Jarred Vanderbilt",
+              "fullGamePoints": 0,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 757,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1629012,
+              "name": "Collin Sexton",
+              "fullGamePoints": 0,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 930,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1643024,
+              "name": "Chris Mañon",
+              "fullGamePoints": 0,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 81,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1630702,
+              "name": "Jaden Hardy",
+              "fullGamePoints": 0,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 81,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1642355,
+              "name": "Bronny James",
+              "fullGamePoints": 0,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 81,
+              "summedPeriodSeconds": 0
+            }
+          ]
+        }
+      ],
+      "validTeamTotals": false
+    },
+    {
+      "season": 2024,
+      "id": "0022301167",
+      "reason": "Older Celtics–Knicks game",
+      "source": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-stats-raw/main/nba_stats/json/boxscoretraditionalv3_period/2024/0022301167.json",
+      "periodKeys": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "sides": [
+        {
+          "team": "BOS",
+          "expected": {
+            "points": 109,
+            "assists": 25,
+            "reboundsOffensive": 10,
+            "reboundsDefensive": 26,
+            "blocks": 12
+          },
+          "summedPeriods": {
+            "points": 0,
+            "assists": 0,
+            "reboundsOffensive": 0,
+            "reboundsDefensive": 0,
+            "blocks": 0
+          },
+          "differences": {
+            "points": -109,
+            "assists": -25,
+            "reboundsOffensive": -10,
+            "reboundsDefensive": -26,
+            "blocks": -12
+          },
+          "periodRows": [
+            {
+              "period": 1,
+              "capturedAt": "2026-07-23T19:03:26.326Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:00"
+            },
+            {
+              "period": 2,
+              "capturedAt": "2026-07-23T19:03:27.327Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:01"
+            },
+            {
+              "period": 3,
+              "capturedAt": "2026-07-23T19:03:27.327Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:03"
+            },
+            {
+              "period": 4,
+              "capturedAt": "2026-07-23T19:03:28.328Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:17"
+            }
+          ],
+          "espnPeriodPoints": null,
+          "espnQuarterPointsMatch": null,
+          "playerComparisons": [
+            {
+              "id": 1627759,
+              "name": "Jaylen Brown",
+              "fullGamePoints": 15,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1718,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1628369,
+              "name": "Jayson Tatum",
+              "fullGamePoints": 18,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1908,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 204001,
+              "name": "Kristaps Porziņģis",
+              "fullGamePoints": 14,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1519,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1628401,
+              "name": "Derrick White",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1718,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 201950,
+              "name": "Jrue Holiday",
+              "fullGamePoints": 7,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1730,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 201143,
+              "name": "Al Horford",
+              "fullGamePoints": 6,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 932,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1630573,
+              "name": "Sam Hauser",
+              "fullGamePoints": 15,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1324,
+              "summedPeriodSeconds": 3
+            },
+            {
+              "id": 1630202,
+              "name": "Payton Pritchard",
+              "fullGamePoints": 16,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1250,
+              "summedPeriodSeconds": 3
+            },
+            {
+              "id": 1630214,
+              "name": "Xavier Tillman",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 363,
+              "summedPeriodSeconds": 3
+            },
+            {
+              "id": 1630531,
+              "name": "Jaden Springer",
+              "fullGamePoints": 3,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 767,
+              "summedPeriodSeconds": 3
+            },
+            {
+              "id": 1629004,
+              "name": "Svi Mykhailiuk",
+              "fullGamePoints": 9,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 767,
+              "summedPeriodSeconds": 3
+            },
+            {
+              "id": 1628436,
+              "name": "Luke Kornet",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 404,
+              "summedPeriodSeconds": 0
+            }
+          ]
+        },
+        {
+          "team": "NYK",
+          "expected": {
+            "points": 118,
+            "assists": 24,
+            "reboundsOffensive": 17,
+            "reboundsDefensive": 35,
+            "blocks": 4
+          },
+          "summedPeriods": {
+            "points": 0,
+            "assists": 0,
+            "reboundsOffensive": 0,
+            "reboundsDefensive": 0,
+            "blocks": 0
+          },
+          "differences": {
+            "points": -118,
+            "assists": -24,
+            "reboundsOffensive": -17,
+            "reboundsDefensive": -35,
+            "blocks": -4
+          },
+          "periodRows": [
+            {
+              "period": 1,
+              "capturedAt": "2026-07-23T19:03:26.326Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:00"
+            },
+            {
+              "period": 2,
+              "capturedAt": "2026-07-23T19:03:27.327Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:01"
+            },
+            {
+              "period": 3,
+              "capturedAt": "2026-07-23T19:03:27.327Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:03"
+            },
+            {
+              "period": 4,
+              "capturedAt": "2026-07-23T19:03:28.328Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:17"
+            }
+          ],
+          "espnPeriodPoints": null,
+          "espnQuarterPointsMatch": null,
+          "playerComparisons": [
+            {
+              "id": 1628404,
+              "name": "Josh Hart",
+              "fullGamePoints": 16,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1918,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1628384,
+              "name": "OG Anunoby",
+              "fullGamePoints": 12,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1558,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1628392,
+              "name": "Isaiah Hartenstein",
+              "fullGamePoints": 11,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1985,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1628978,
+              "name": "Donte DiVincenzo",
+              "fullGamePoints": 17,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2478,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1628973,
+              "name": "Jalen Brunson",
+              "fullGamePoints": 39,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1803,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1629011,
+              "name": "Mitchell Robinson",
+              "fullGamePoints": 5,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 887,
+              "summedPeriodSeconds": 3
+            },
+            {
+              "id": 1630540,
+              "name": "Miles McBride",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1300,
+              "summedPeriodSeconds": 3
+            },
+            {
+              "id": 202711,
+              "name": "Bojan Bogdanović",
+              "fullGamePoints": 14,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1509,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1630173,
+              "name": "Precious Achiuwa",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 962,
+              "summedPeriodSeconds": 0
+            }
+          ]
+        }
+      ],
+      "validTeamTotals": false
+    },
+    {
+      "season": 2025,
+      "id": "0022400002",
+      "reason": "Overtime game selected from published full-game minutes",
+      "source": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-stats-raw/main/nba_stats/json/boxscoretraditionalv3_period/2025/0022400002.json",
+      "periodKeys": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "sides": [
+        {
+          "team": "DET",
+          "expected": {
+            "points": 123,
+            "assists": 32,
+            "reboundsOffensive": 15,
+            "reboundsDefensive": 41,
+            "blocks": 4
+          },
+          "summedPeriods": {
+            "points": 0,
+            "assists": 0,
+            "reboundsOffensive": 0,
+            "reboundsDefensive": 0,
+            "blocks": 0
+          },
+          "differences": {
+            "points": -123,
+            "assists": -32,
+            "reboundsOffensive": -15,
+            "reboundsDefensive": -41,
+            "blocks": -4
+          },
+          "periodRows": [
+            {
+              "period": 1,
+              "capturedAt": "2026-07-23T19:18:55.1855Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:00"
+            },
+            {
+              "period": 2,
+              "capturedAt": "2026-07-23T19:18:56.1856Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:04"
+            },
+            {
+              "period": 3,
+              "capturedAt": "2026-07-23T19:18:57.1857Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:18"
+            },
+            {
+              "period": 4,
+              "capturedAt": "2026-07-23T19:18:57.1857Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:01"
+            },
+            {
+              "period": 5,
+              "capturedAt": "2026-07-23T19:18:58.1858Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:01"
+            }
+          ],
+          "espnPeriodPoints": null,
+          "espnQuarterPointsMatch": null,
+          "playerComparisons": [
+            {
+              "id": 203501,
+              "name": "Tim Hardaway Jr.",
+              "fullGamePoints": 11,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1131,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 202699,
+              "name": "Tobias Harris",
+              "fullGamePoints": 18,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2407,
+              "summedPeriodSeconds": 5
+            },
+            {
+              "id": 1631105,
+              "name": "Jalen Duren",
+              "fullGamePoints": 8,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1817,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1631093,
+              "name": "Jaden Ivey",
+              "fullGamePoints": 19,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2445,
+              "summedPeriodSeconds": 5
+            },
+            {
+              "id": 1630595,
+              "name": "Cade Cunningham",
+              "fullGamePoints": 21,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2257,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1630191,
+              "name": "Isaiah Stewart",
+              "fullGamePoints": 13,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1363,
+              "summedPeriodSeconds": 5
+            },
+            {
+              "id": 1627736,
+              "name": "Malik Beasley",
+              "fullGamePoints": 21,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2118,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1631323,
+              "name": "Simone Fontecchio",
+              "fullGamePoints": 10,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1400,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1641842,
+              "name": "Ronald Holland II",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 963,
+              "summedPeriodSeconds": 0
+            }
+          ]
+        },
+        {
+          "team": "MIA",
+          "expected": {
+            "points": 121,
+            "assists": 25,
+            "reboundsOffensive": 12,
+            "reboundsDefensive": 31,
+            "blocks": 3
+          },
+          "summedPeriods": {
+            "points": 0,
+            "assists": 0,
+            "reboundsOffensive": 0,
+            "reboundsDefensive": 0,
+            "blocks": 0
+          },
+          "differences": {
+            "points": -121,
+            "assists": -25,
+            "reboundsOffensive": -12,
+            "reboundsDefensive": -31,
+            "blocks": -3
+          },
+          "periodRows": [
+            {
+              "period": 1,
+              "capturedAt": "2026-07-23T19:18:55.1855Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:00"
+            },
+            {
+              "period": 2,
+              "capturedAt": "2026-07-23T19:18:56.1856Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:04"
+            },
+            {
+              "period": 3,
+              "capturedAt": "2026-07-23T19:18:57.1857Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:18"
+            },
+            {
+              "period": 4,
+              "capturedAt": "2026-07-23T19:18:57.1857Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:01"
+            },
+            {
+              "period": 5,
+              "capturedAt": "2026-07-23T19:18:58.1858Z",
+              "points": 0,
+              "assists": 0,
+              "reboundsOffensive": 0,
+              "reboundsDefensive": 0,
+              "blocks": 0,
+              "minutes": "0:01"
+            }
+          ],
+          "espnPeriodPoints": null,
+          "espnQuarterPointsMatch": null,
+          "playerComparisons": [
+            {
+              "id": 1629312,
+              "name": "Haywood Highsmith",
+              "fullGamePoints": 9,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2166,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 201567,
+              "name": "Kevin Love",
+              "fullGamePoints": 3,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 584,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1628389,
+              "name": "Bam Adebayo",
+              "fullGamePoints": 20,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2613,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1629639,
+              "name": "Tyler Herro",
+              "fullGamePoints": 40,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2539,
+              "summedPeriodSeconds": 4
+            },
+            {
+              "id": 1626179,
+              "name": "Terry Rozier",
+              "fullGamePoints": 7,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2371,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1631107,
+              "name": "Nikola Jović",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 150,
+              "summedPeriodSeconds": 0
+            },
+            {
+              "id": 1626196,
+              "name": "Josh Richardson",
+              "fullGamePoints": 5,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 472,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1631170,
+              "name": "Jaime Jaquez Jr.",
+              "fullGamePoints": 14,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 1488,
+              "summedPeriodSeconds": 5
+            },
+            {
+              "id": 1629130,
+              "name": "Duncan Robinson",
+              "fullGamePoints": 14,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 2157,
+              "summedPeriodSeconds": 5
+            },
+            {
+              "id": 1642276,
+              "name": "Kel'el Ware",
+              "fullGamePoints": 5,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 567,
+              "summedPeriodSeconds": 1
+            },
+            {
+              "id": 1641796,
+              "name": "Pelle Larsson",
+              "fullGamePoints": 2,
+              "summedPeriodPoints": 0,
+              "fullGameSeconds": 793,
+              "summedPeriodSeconds": 0
+            }
+          ]
+        }
+      ],
+      "validTeamTotals": false
+    }
+  ]
+}

@@ -1,0 +1,1511 @@
+{
+  "checkedAtUTC": "2026-11-01T21:35:38.485Z",
+  "note": "Small access/schema sample, not proof of coverage or source accuracy. Fixtures are separately labeled, never live fallback.",
+  "live": [
+    {
+      "label": "ESPN 401704627",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401704627",
+      "status": 200,
+      "elapsedMs": 629,
+      "data": {
+        "id": "401704627",
+        "date": "2024-10-22T23:30Z",
+        "completed": true,
+        "teams": [
+          {
+            "team": "BOS",
+            "score": 132,
+            "periods": [
+              43,
+              31,
+              39,
+              19
+            ],
+            "periodPointsMatch": true
+          },
+          {
+            "team": "NY",
+            "score": 109,
+            "periods": [
+              24,
+              31,
+              32,
+              22
+            ],
+            "periodPointsMatch": true
+          }
+        ],
+        "teamFields": [
+          "fieldGoalsMade-fieldGoalsAttempted",
+          "fieldGoalPct",
+          "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+          "threePointFieldGoalPct",
+          "freeThrowsMade-freeThrowsAttempted",
+          "freeThrowPct",
+          "totalRebounds",
+          "offensiveRebounds",
+          "defensiveRebounds",
+          "assists",
+          "steals",
+          "blocks",
+          "turnovers",
+          "teamTurnovers",
+          "totalTurnovers",
+          "technicalFouls",
+          "totalTechnicalFouls",
+          "flagrantFouls",
+          "turnoverPoints",
+          "fastBreakPoints",
+          "pointsInPaint",
+          "fouls",
+          "largestLead"
+        ],
+        "players": [
+          {
+            "team": "NY",
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "3934719",
+                    "name": "OG Anunoby",
+                    "values": [
+                      "34",
+                      "4",
+                      "1-7",
+                      "0-4",
+                      "2-2",
+                      "5",
+                      "3",
+                      "0",
+                      "1",
+                      "0",
+                      "0",
+                      "5",
+                      "3",
+                      "-21"
+                    ]
+                  },
+                  {
+                    "id": "3136195",
+                    "name": "Karl-Anthony Towns",
+                    "values": [
+                      "24",
+                      "12",
+                      "5-9",
+                      "1-2",
+                      "1-1",
+                      "7",
+                      "3",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "7",
+                      "1",
+                      "-18"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "team": "BOS",
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "4065648",
+                    "name": "Jayson Tatum",
+                    "values": [
+                      "30",
+                      "37",
+                      "14-18",
+                      "8-11",
+                      "1-2",
+                      "4",
+                      "10",
+                      "1",
+                      "1",
+                      "1",
+                      "0",
+                      "4",
+                      "1",
+                      "+26"
+                    ]
+                  },
+                  {
+                    "id": "3213",
+                    "name": "Al Horford",
+                    "values": [
+                      "26",
+                      "11",
+                      "4-7",
+                      "3-5",
+                      "0-0",
+                      "3",
+                      "5",
+                      "0",
+                      "1",
+                      "1",
+                      "0",
+                      "3",
+                      "2",
+                      "+19"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "playCount": 390,
+        "playFields": [
+          "id",
+          "sequenceNumber",
+          "type",
+          "text",
+          "awayScore",
+          "homeScore",
+          "period",
+          "clock",
+          "scoringPlay",
+          "scoreValue",
+          "team",
+          "participants",
+          "wallclock",
+          "shootingPlay",
+          "coordinate",
+          "pointsAttempted",
+          "shortDescription"
+        ],
+        "playerQuarterBoxScoreObserved": false
+      }
+    },
+    {
+      "label": "ESPN 401909285",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909285",
+      "status": 200,
+      "elapsedMs": 536,
+      "data": {
+        "id": "401909285",
+        "date": "2026-10-31T02:00Z",
+        "completed": true,
+        "teams": [
+          {
+            "team": "GS",
+            "score": 112,
+            "periods": [
+              15,
+              38,
+              32,
+              27
+            ],
+            "periodPointsMatch": true
+          },
+          {
+            "team": "LAL",
+            "score": 95,
+            "periods": [
+              38,
+              15,
+              27,
+              15
+            ],
+            "periodPointsMatch": true
+          }
+        ],
+        "teamFields": [
+          "fieldGoalsMade-fieldGoalsAttempted",
+          "fieldGoalPct",
+          "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+          "threePointFieldGoalPct",
+          "freeThrowsMade-freeThrowsAttempted",
+          "freeThrowPct",
+          "totalRebounds",
+          "offensiveRebounds",
+          "defensiveRebounds",
+          "assists",
+          "steals",
+          "blocks",
+          "turnovers",
+          "teamTurnovers",
+          "totalTurnovers",
+          "technicalFouls",
+          "totalTechnicalFouls",
+          "flagrantFouls",
+          "turnoverPoints",
+          "fastBreakPoints",
+          "pointsInPaint",
+          "fouls",
+          "largestLead",
+          "leadChanges",
+          "leadPercentage"
+        ],
+        "players": [
+          {
+            "team": "LAL",
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "4592691",
+                    "name": "Jake LaRavia",
+                    "values": [
+                      "28",
+                      "10",
+                      "3-7",
+                      "2-5",
+                      "2-4",
+                      "2",
+                      "0",
+                      "3",
+                      "1",
+                      "1",
+                      "1",
+                      "1",
+                      "4",
+                      "-11"
+                    ]
+                  },
+                  {
+                    "id": "4433136",
+                    "name": "Walker Kessler",
+                    "values": [
+                      "31",
+                      "10",
+                      "4-7",
+                      "0-0",
+                      "2-3",
+                      "13",
+                      "2",
+                      "1",
+                      "0",
+                      "5",
+                      "5",
+                      "8",
+                      "0",
+                      "+3"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "team": "GS",
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "6589",
+                    "name": "Draymond Green",
+                    "values": [
+                      "32",
+                      "2",
+                      "1-3",
+                      "0-2",
+                      "0-0",
+                      "4",
+                      "9",
+                      "1",
+                      "3",
+                      "1",
+                      "1",
+                      "3",
+                      "1",
+                      "+17"
+                    ]
+                  },
+                  {
+                    "id": "4997536",
+                    "name": "Gui Santos",
+                    "values": [
+                      "16",
+                      "2",
+                      "1-4",
+                      "0-1",
+                      "0-0",
+                      "5",
+                      "1",
+                      "2",
+                      "0",
+                      "0",
+                      "2",
+                      "3",
+                      "2",
+                      "+9"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "playCount": 518,
+        "playFields": [
+          "id",
+          "sequenceNumber",
+          "type",
+          "text",
+          "awayScore",
+          "homeScore",
+          "period",
+          "clock",
+          "scoringPlay",
+          "scoreValue",
+          "team",
+          "participants",
+          "wallclock",
+          "shootingPlay",
+          "coordinate",
+          "pointsAttempted",
+          "shortDescription"
+        ],
+        "playerQuarterBoxScoreObserved": false
+      }
+    },
+    {
+      "label": "ESPN 401703371",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401703371",
+      "status": 200,
+      "elapsedMs": 530,
+      "data": {
+        "id": "401703371",
+        "date": "2024-11-13T00:00Z",
+        "completed": true,
+        "teams": [
+          {
+            "team": "DET",
+            "score": 123,
+            "periods": [
+              32,
+              25,
+              34,
+              20,
+              12
+            ],
+            "periodPointsMatch": true
+          },
+          {
+            "team": "MIA",
+            "score": 121,
+            "periods": [
+              21,
+              30,
+              31,
+              29,
+              10
+            ],
+            "periodPointsMatch": true
+          }
+        ],
+        "teamFields": [
+          "fieldGoalsMade-fieldGoalsAttempted",
+          "fieldGoalPct",
+          "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+          "threePointFieldGoalPct",
+          "freeThrowsMade-freeThrowsAttempted",
+          "freeThrowPct",
+          "totalRebounds",
+          "offensiveRebounds",
+          "defensiveRebounds",
+          "assists",
+          "steals",
+          "blocks",
+          "turnovers",
+          "teamTurnovers",
+          "totalTurnovers",
+          "technicalFouls",
+          "totalTechnicalFouls",
+          "flagrantFouls",
+          "turnoverPoints",
+          "fastBreakPoints",
+          "pointsInPaint",
+          "fouls",
+          "largestLead"
+        ],
+        "players": [
+          {
+            "team": "MIA",
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "3449",
+                    "name": "Kevin Love",
+                    "values": [
+                      "10",
+                      "3",
+                      "1-4",
+                      "1-4",
+                      "0-0",
+                      "2",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "2",
+                      "0",
+                      "-6"
+                    ]
+                  },
+                  {
+                    "id": "4291678",
+                    "name": "Haywood Highsmith",
+                    "values": [
+                      "36",
+                      "9",
+                      "3-5",
+                      "1-3",
+                      "2-3",
+                      "5",
+                      "1",
+                      "1",
+                      "3",
+                      "1",
+                      "1",
+                      "4",
+                      "5",
+                      "+5"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "team": "DET",
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "6440",
+                    "name": "Tobias Harris",
+                    "values": [
+                      "40",
+                      "18",
+                      "7-15",
+                      "2-4",
+                      "2-2",
+                      "7",
+                      "4",
+                      "2",
+                      "1",
+                      "0",
+                      "2",
+                      "5",
+                      "0",
+                      "+4"
+                    ]
+                  },
+                  {
+                    "id": "4433621",
+                    "name": "Jalen Duren",
+                    "values": [
+                      "30",
+                      "8",
+                      "4-5",
+                      "0-0",
+                      "0-2",
+                      "11",
+                      "5",
+                      "1",
+                      "0",
+                      "2",
+                      "3",
+                      "8",
+                      "3",
+                      "0"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "playCount": 507,
+        "playFields": [
+          "id",
+          "sequenceNumber",
+          "type",
+          "text",
+          "awayScore",
+          "homeScore",
+          "period",
+          "clock",
+          "scoringPlay",
+          "scoreValue",
+          "team",
+          "participants",
+          "wallclock",
+          "shootingPlay",
+          "coordinate",
+          "pointsAttempted",
+          "shortDescription"
+        ],
+        "playerQuarterBoxScoreObserved": false
+      }
+    },
+    {
+      "label": "NBA historical Q1",
+      "url": "https://stats.nba.com/stats/boxscoretraditionalv3?EndPeriod=1&EndRange=0&GameID=0022400061&RangeType=0&StartPeriod=1&StartRange=0",
+      "elapsedMs": 18008,
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "label": "NBA recent Q1",
+      "url": "https://stats.nba.com/stats/boxscoretraditionalv3?EndPeriod=1&EndRange=0&GameID=0022600023&RangeType=0&StartPeriod=1&StartRange=0",
+      "elapsedMs": 18009,
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "label": "ESPN historical repeat",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401704627",
+      "status": 200,
+      "elapsedMs": 514,
+      "data": {
+        "id": "401704627",
+        "date": "2024-10-22T23:30Z",
+        "completed": true,
+        "teams": [
+          {
+            "team": "BOS",
+            "score": 132,
+            "periods": [
+              43,
+              31,
+              39,
+              19
+            ],
+            "periodPointsMatch": true
+          },
+          {
+            "team": "NY",
+            "score": 109,
+            "periods": [
+              24,
+              31,
+              32,
+              22
+            ],
+            "periodPointsMatch": true
+          }
+        ],
+        "teamFields": [
+          "fieldGoalsMade-fieldGoalsAttempted",
+          "fieldGoalPct",
+          "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+          "threePointFieldGoalPct",
+          "freeThrowsMade-freeThrowsAttempted",
+          "freeThrowPct",
+          "totalRebounds",
+          "offensiveRebounds",
+          "defensiveRebounds",
+          "assists",
+          "steals",
+          "blocks",
+          "turnovers",
+          "teamTurnovers",
+          "totalTurnovers",
+          "technicalFouls",
+          "totalTechnicalFouls",
+          "flagrantFouls",
+          "turnoverPoints",
+          "fastBreakPoints",
+          "pointsInPaint",
+          "fouls",
+          "largestLead"
+        ],
+        "players": [
+          {
+            "team": "NY",
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "3934719",
+                    "name": "OG Anunoby",
+                    "values": [
+                      "34",
+                      "4",
+                      "1-7",
+                      "0-4",
+                      "2-2",
+                      "5",
+                      "3",
+                      "0",
+                      "1",
+                      "0",
+                      "0",
+                      "5",
+                      "3",
+                      "-21"
+                    ]
+                  },
+                  {
+                    "id": "3136195",
+                    "name": "Karl-Anthony Towns",
+                    "values": [
+                      "24",
+                      "12",
+                      "5-9",
+                      "1-2",
+                      "1-1",
+                      "7",
+                      "3",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "7",
+                      "1",
+                      "-18"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "team": "BOS",
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "4065648",
+                    "name": "Jayson Tatum",
+                    "values": [
+                      "30",
+                      "37",
+                      "14-18",
+                      "8-11",
+                      "1-2",
+                      "4",
+                      "10",
+                      "1",
+                      "1",
+                      "1",
+                      "0",
+                      "4",
+                      "1",
+                      "+26"
+                    ]
+                  },
+                  {
+                    "id": "3213",
+                    "name": "Al Horford",
+                    "values": [
+                      "26",
+                      "11",
+                      "4-7",
+                      "3-5",
+                      "0-0",
+                      "3",
+                      "5",
+                      "0",
+                      "1",
+                      "1",
+                      "0",
+                      "3",
+                      "2",
+                      "+19"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "playCount": 390,
+        "playFields": [
+          "id",
+          "sequenceNumber",
+          "type",
+          "text",
+          "awayScore",
+          "homeScore",
+          "period",
+          "clock",
+          "scoringPlay",
+          "scoreValue",
+          "team",
+          "participants",
+          "wallclock",
+          "shootingPlay",
+          "coordinate",
+          "pointsAttempted",
+          "shortDescription"
+        ],
+        "playerQuarterBoxScoreObserved": false
+      }
+    },
+    {
+      "label": "NBA matchup archive historical",
+      "url": "https://raw.githubusercontent.com/sportsdataverse/hoopR-nba-stats-raw/main/nba_stats/json/boxscorematchupsv3/2025/0022400061.json",
+      "status": 200,
+      "elapsedMs": 310,
+      "data": {
+        "gameId": "0022400061",
+        "teams": [
+          {
+            "side": "homeTeam",
+            "players": 11
+          },
+          {
+            "side": "awayTeam",
+            "players": 12
+          }
+        ]
+      }
+    }
+  ],
+  "savedFixtures": [
+    {
+      "id": "401704627",
+      "data": {
+        "id": "401704627",
+        "date": "2024-10-22T23:30Z",
+        "completed": true,
+        "teams": [
+          {
+            "team": "BOS",
+            "score": 132,
+            "periods": [
+              43,
+              31,
+              39,
+              19
+            ],
+            "periodPointsMatch": true
+          },
+          {
+            "team": "NY",
+            "score": 109,
+            "periods": [
+              24,
+              31,
+              32,
+              22
+            ],
+            "periodPointsMatch": true
+          }
+        ],
+        "teamFields": [
+          "fieldGoalsMade-fieldGoalsAttempted",
+          "fieldGoalPct",
+          "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+          "threePointFieldGoalPct",
+          "freeThrowsMade-freeThrowsAttempted",
+          "freeThrowPct",
+          "totalRebounds",
+          "offensiveRebounds",
+          "defensiveRebounds",
+          "assists",
+          "steals",
+          "blocks",
+          "turnovers",
+          "teamTurnovers",
+          "totalTurnovers",
+          "technicalFouls",
+          "totalTechnicalFouls",
+          "flagrantFouls",
+          "turnoverPoints",
+          "fastBreakPoints",
+          "pointsInPaint",
+          "fouls",
+          "largestLead"
+        ],
+        "players": [
+          {
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "3934719",
+                    "name": "OG Anunoby",
+                    "values": [
+                      "34",
+                      "4",
+                      "1-7",
+                      "0-4",
+                      "2-2",
+                      "5",
+                      "3",
+                      "0",
+                      "1",
+                      "0",
+                      "0",
+                      "5",
+                      "3",
+                      "-21"
+                    ]
+                  },
+                  {
+                    "id": "3136195",
+                    "name": "Karl-Anthony Towns",
+                    "values": [
+                      "24",
+                      "12",
+                      "5-9",
+                      "1-2",
+                      "1-1",
+                      "7",
+                      "3",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "7",
+                      "1",
+                      "-18"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "4065648",
+                    "name": "Jayson Tatum",
+                    "values": [
+                      "30",
+                      "37",
+                      "14-18",
+                      "8-11",
+                      "1-2",
+                      "4",
+                      "10",
+                      "1",
+                      "1",
+                      "1",
+                      "0",
+                      "4",
+                      "1",
+                      "+26"
+                    ]
+                  },
+                  {
+                    "id": "3213",
+                    "name": "Al Horford",
+                    "values": [
+                      "26",
+                      "11",
+                      "4-7",
+                      "3-5",
+                      "0-0",
+                      "3",
+                      "5",
+                      "0",
+                      "1",
+                      "1",
+                      "0",
+                      "3",
+                      "2",
+                      "+19"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "playCount": 390,
+        "playFields": [
+          "id",
+          "sequenceNumber",
+          "type",
+          "text",
+          "period",
+          "clock",
+          "scoringPlay",
+          "scoreValue",
+          "team",
+          "participants",
+          "homeScore",
+          "awayScore",
+          "shootingPlay"
+        ],
+        "playerQuarterBoxScoreObserved": false
+      }
+    },
+    {
+      "id": "401909285",
+      "data": {
+        "id": "401909285",
+        "date": "2026-10-31T02:00Z",
+        "completed": true,
+        "teams": [
+          {
+            "team": "GS",
+            "score": 112,
+            "periods": [
+              15,
+              38,
+              32,
+              27
+            ],
+            "periodPointsMatch": true
+          },
+          {
+            "team": "LAL",
+            "score": 95,
+            "periods": [
+              38,
+              15,
+              27,
+              15
+            ],
+            "periodPointsMatch": true
+          }
+        ],
+        "teamFields": [
+          "fieldGoalsMade-fieldGoalsAttempted",
+          "fieldGoalPct",
+          "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+          "threePointFieldGoalPct",
+          "freeThrowsMade-freeThrowsAttempted",
+          "freeThrowPct",
+          "totalRebounds",
+          "offensiveRebounds",
+          "defensiveRebounds",
+          "assists",
+          "steals",
+          "blocks",
+          "turnovers",
+          "teamTurnovers",
+          "totalTurnovers",
+          "technicalFouls",
+          "totalTechnicalFouls",
+          "flagrantFouls",
+          "turnoverPoints",
+          "fastBreakPoints",
+          "pointsInPaint",
+          "fouls",
+          "largestLead",
+          "leadChanges",
+          "leadPercentage"
+        ],
+        "players": [
+          {
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "4592691",
+                    "name": "Jake LaRavia",
+                    "values": [
+                      "28",
+                      "10",
+                      "3-7",
+                      "2-5",
+                      "2-4",
+                      "2",
+                      "0",
+                      "3",
+                      "1",
+                      "1",
+                      "1",
+                      "1",
+                      "4",
+                      "-11"
+                    ]
+                  },
+                  {
+                    "id": "4433136",
+                    "name": "Walker Kessler",
+                    "values": [
+                      "31",
+                      "10",
+                      "4-7",
+                      "0-0",
+                      "2-3",
+                      "13",
+                      "2",
+                      "1",
+                      "0",
+                      "5",
+                      "5",
+                      "8",
+                      "0",
+                      "+3"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "6589",
+                    "name": "Draymond Green",
+                    "values": [
+                      "32",
+                      "2",
+                      "1-3",
+                      "0-2",
+                      "0-0",
+                      "4",
+                      "9",
+                      "1",
+                      "3",
+                      "1",
+                      "1",
+                      "3",
+                      "1",
+                      "+17"
+                    ]
+                  },
+                  {
+                    "id": "4997536",
+                    "name": "Gui Santos",
+                    "values": [
+                      "16",
+                      "2",
+                      "1-4",
+                      "0-1",
+                      "0-0",
+                      "5",
+                      "1",
+                      "2",
+                      "0",
+                      "0",
+                      "2",
+                      "3",
+                      "2",
+                      "+9"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "playCount": 518,
+        "playFields": [
+          "id",
+          "sequenceNumber",
+          "type",
+          "text",
+          "period",
+          "clock",
+          "scoringPlay",
+          "scoreValue",
+          "team",
+          "participants",
+          "homeScore",
+          "awayScore",
+          "shootingPlay"
+        ],
+        "playerQuarterBoxScoreObserved": false
+      }
+    },
+    {
+      "id": "401703371",
+      "data": {
+        "id": "401703371",
+        "date": "2024-11-13T00:00Z",
+        "completed": true,
+        "teams": [
+          {
+            "team": "DET",
+            "score": 123,
+            "periods": [
+              32,
+              25,
+              34,
+              20,
+              12
+            ],
+            "periodPointsMatch": true
+          },
+          {
+            "team": "MIA",
+            "score": 121,
+            "periods": [
+              21,
+              30,
+              31,
+              29,
+              10
+            ],
+            "periodPointsMatch": true
+          }
+        ],
+        "teamFields": [
+          "fieldGoalsMade-fieldGoalsAttempted",
+          "fieldGoalPct",
+          "threePointFieldGoalsMade-threePointFieldGoalsAttempted",
+          "threePointFieldGoalPct",
+          "freeThrowsMade-freeThrowsAttempted",
+          "freeThrowPct",
+          "totalRebounds",
+          "offensiveRebounds",
+          "defensiveRebounds",
+          "assists",
+          "steals",
+          "blocks",
+          "turnovers",
+          "teamTurnovers",
+          "totalTurnovers",
+          "technicalFouls",
+          "totalTechnicalFouls",
+          "flagrantFouls",
+          "turnoverPoints",
+          "fastBreakPoints",
+          "pointsInPaint",
+          "fouls",
+          "largestLead"
+        ],
+        "players": [
+          {
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "3449",
+                    "name": "Kevin Love",
+                    "values": [
+                      "10",
+                      "3",
+                      "1-4",
+                      "1-4",
+                      "0-0",
+                      "2",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "0",
+                      "2",
+                      "0",
+                      "-6"
+                    ]
+                  },
+                  {
+                    "id": "4291678",
+                    "name": "Haywood Highsmith",
+                    "values": [
+                      "36",
+                      "9",
+                      "3-5",
+                      "1-3",
+                      "2-3",
+                      "5",
+                      "1",
+                      "1",
+                      "3",
+                      "1",
+                      "1",
+                      "4",
+                      "5",
+                      "+5"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "groups": [
+              {
+                "labels": [
+                  "MIN",
+                  "PTS",
+                  "FG",
+                  "3PT",
+                  "FT",
+                  "REB",
+                  "AST",
+                  "TO",
+                  "STL",
+                  "BLK",
+                  "OREB",
+                  "DREB",
+                  "PF",
+                  "+/-"
+                ],
+                "sample": [
+                  {
+                    "id": "6440",
+                    "name": "Tobias Harris",
+                    "values": [
+                      "40",
+                      "18",
+                      "7-15",
+                      "2-4",
+                      "2-2",
+                      "7",
+                      "4",
+                      "2",
+                      "1",
+                      "0",
+                      "2",
+                      "5",
+                      "0",
+                      "+4"
+                    ]
+                  },
+                  {
+                    "id": "4433621",
+                    "name": "Jalen Duren",
+                    "values": [
+                      "30",
+                      "8",
+                      "4-5",
+                      "0-0",
+                      "0-2",
+                      "11",
+                      "5",
+                      "1",
+                      "0",
+                      "2",
+                      "3",
+                      "8",
+                      "3",
+                      "0"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "playCount": 507,
+        "playFields": [
+          "id",
+          "sequenceNumber",
+          "type",
+          "text",
+          "period",
+          "clock",
+          "scoringPlay",
+          "scoreValue",
+          "team",
+          "participants",
+          "homeScore",
+          "awayScore",
+          "shootingPlay"
+        ],
+        "playerQuarterBoxScoreObserved": false
+      }
+    }
+  ]
+}

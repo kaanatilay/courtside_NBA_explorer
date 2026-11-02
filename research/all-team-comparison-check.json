@@ -1,0 +1,275 @@
+{
+  "checkedAt": "2026-11-02T22:33:37.100Z",
+  "results": [
+    {
+      "left": "BOS",
+      "right": "LAL",
+      "teamGames": 3,
+      "player": "Paul George",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "LAL",
+      "right": "GSW",
+      "teamGames": 3,
+      "player": "Jake LaRavia",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "GSW",
+      "right": "NYK",
+      "teamGames": 3,
+      "player": "Georges Niang",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "NYK",
+      "right": "ATL",
+      "teamGames": 3,
+      "player": "OG Anunoby",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "ATL",
+      "right": "BKN",
+      "teamGames": 3,
+      "player": "Onyeka Okongwu",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "BKN",
+      "right": "CHA",
+      "teamGames": 3,
+      "player": "Julius Randle",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "CHA",
+      "right": "CHI",
+      "teamGames": 3,
+      "player": "Moussa Diabate",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "CHI",
+      "right": "CLE",
+      "teamGames": 3,
+      "player": "Jalen Smith",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "CLE",
+      "right": "DAL",
+      "teamGames": 3,
+      "player": "Jarrett Allen",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "DAL",
+      "right": "DEN",
+      "teamGames": 3,
+      "player": "Daniel Gafford",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "DEN",
+      "right": "DET",
+      "teamGames": 3,
+      "player": "Aaron Gordon",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "DET",
+      "right": "HOU",
+      "teamGames": 3,
+      "player": "Duncan Robinson",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "HOU",
+      "right": "IND",
+      "teamGames": 3,
+      "player": "Kevin Durant",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "IND",
+      "right": "LAC",
+      "teamGames": 3,
+      "player": "Pascal Siakam",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "LAC",
+      "right": "MEM",
+      "teamGames": 3,
+      "player": "Derrick Jones Jr.",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "MEM",
+      "right": "MIA",
+      "teamGames": 3,
+      "player": "Cedric Coward",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "MIA",
+      "right": "MIL",
+      "teamGames": 3,
+      "player": "Giannis Antetokounmpo",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "MIL",
+      "right": "MIN",
+      "teamGames": 3,
+      "player": "Kyle Kuzma",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "MIN",
+      "right": "NOP",
+      "teamGames": 3,
+      "player": "Jaden McDaniels",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "NOP",
+      "right": "OKC",
+      "teamGames": 3,
+      "player": "Herbert Jones",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "OKC",
+      "right": "ORL",
+      "teamGames": 3,
+      "player": "Isaiah Hartenstein",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "ORL",
+      "right": "PHI",
+      "teamGames": 3,
+      "player": "Franz Wagner",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "PHI",
+      "right": "PHX",
+      "teamGames": 3,
+      "player": "Dean Wade",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "PHX",
+      "right": "POR",
+      "teamGames": 3,
+      "player": "Dillon Brooks",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "POR",
+      "right": "SAC",
+      "teamGames": 3,
+      "player": "Toumani Camara",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "SAC",
+      "right": "SAS",
+      "teamGames": 3,
+      "player": "Domantas Sabonis",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "SAS",
+      "right": "TOR",
+      "teamGames": 3,
+      "player": "Victor Wembanyama",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "TOR",
+      "right": "UTA",
+      "teamGames": 3,
+      "player": "RJ Barrett",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "UTA",
+      "right": "WAS",
+      "teamGames": 3,
+      "player": "Lauri Markkanen",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    },
+    {
+      "left": "WAS",
+      "right": "BOS",
+      "teamGames": 3,
+      "player": "Anthony Davis",
+      "appearances": 3,
+      "saved": true,
+      "warnings": []
+    }
+  ]
+}

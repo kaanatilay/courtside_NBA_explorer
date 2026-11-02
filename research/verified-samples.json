@@ -1,0 +1,211 @@
+{
+  "checkedAtUTC": "2026-11-01T01:20:45.5984161+00:00",
+  "asOf": "2026-10-31",
+  "provider": "ESPN public site feed",
+  "apiKeyUsed": false,
+  "scheduleSource": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/13/schedule?season=2027&seasontype=2",
+  "scheduleEventsReturned": 80,
+  "note": "Last three completed TEAM games; a missing or DNP player is not a player appearance. Full historical coverage and quarter non-point stats remain unverified.",
+  "recent": [
+    {
+      "eventId": "401909285",
+      "dateUTC": "2026-10-31T02:00Z",
+      "dateEastern": "2026-10-30",
+      "completed": true,
+      "source": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909285",
+      "teams": [
+        {
+          "team": "GS",
+          "fullGamePoints": 112.0,
+          "periodPoints": [
+            15.0,
+            38.0,
+            32.0,
+            27.0
+          ],
+          "fullGameStats": {
+            "assists": 31.0,
+            "offensiveRebounds": 15.0,
+            "defensiveRebounds": 29.0,
+            "blocks": 5.0
+          },
+          "periodPointsReconcile": true
+        },
+        {
+          "team": "LAL",
+          "fullGamePoints": 95.0,
+          "periodPoints": [
+            38.0,
+            15.0,
+            27.0,
+            15.0
+          ],
+          "fullGameStats": {
+            "assists": 18.0,
+            "offensiveRebounds": 16.0,
+            "defensiveRebounds": 29.0,
+            "blocks": 11.0
+          },
+          "periodPointsReconcile": true
+        }
+      ],
+      "player": {
+        "id": "3945274",
+        "name": "Luka Doncic",
+        "didNotPlay": false,
+        "stats": {
+          "MIN": 37.0,
+          "PTS": 37.0,
+          "AST": 5.0,
+          "OREB": 1.0,
+          "DREB": 6.0,
+          "BLK": 2.0
+        }
+      }
+    },
+    {
+      "eventId": "401909892",
+      "dateUTC": "2026-10-29T02:30Z",
+      "dateEastern": "2026-10-28",
+      "completed": true,
+      "source": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909892",
+      "teams": [
+        {
+          "team": "LAC",
+          "fullGamePoints": 87.0,
+          "periodPoints": [
+            22.0,
+            16.0,
+            28.0,
+            21.0
+          ],
+          "fullGameStats": {
+            "assists": 17.0,
+            "offensiveRebounds": 12.0,
+            "defensiveRebounds": 29.0,
+            "blocks": 5.0
+          },
+          "periodPointsReconcile": true
+        },
+        {
+          "team": "LAL",
+          "fullGamePoints": 103.0,
+          "periodPoints": [
+            25.0,
+            31.0,
+            29.0,
+            18.0
+          ],
+          "fullGameStats": {
+            "assists": 16.0,
+            "offensiveRebounds": 17.0,
+            "defensiveRebounds": 31.0,
+            "blocks": 5.0
+          },
+          "periodPointsReconcile": true
+        }
+      ],
+      "player": null
+    },
+    {
+      "eventId": "401909880",
+      "dateUTC": "2026-10-28T03:00Z",
+      "dateEastern": "2026-10-27",
+      "completed": true,
+      "source": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401909880",
+      "teams": [
+        {
+          "team": "LAL",
+          "fullGamePoints": 129.0,
+          "periodPoints": [
+            38.0,
+            35.0,
+            30.0,
+            26.0
+          ],
+          "fullGameStats": {
+            "assists": 28.0,
+            "offensiveRebounds": 6.0,
+            "defensiveRebounds": 25.0,
+            "blocks": 4.0
+          },
+          "periodPointsReconcile": true
+        },
+        {
+          "team": "POR",
+          "fullGamePoints": 136.0,
+          "periodPoints": [
+            32.0,
+            36.0,
+            34.0,
+            34.0
+          ],
+          "fullGameStats": {
+            "assists": 30.0,
+            "offensiveRebounds": 7.0,
+            "defensiveRebounds": 31.0,
+            "blocks": 2.0
+          },
+          "periodPointsReconcile": true
+        }
+      ],
+      "player": {
+        "id": "3945274",
+        "name": "Luka Doncic",
+        "didNotPlay": false,
+        "stats": {
+          "MIN": 37.0,
+          "PTS": 41.0,
+          "AST": 9.0,
+          "OREB": 0.0,
+          "DREB": 5.0,
+          "BLK": 1.0
+        }
+      }
+    }
+  ],
+  "historical": {
+    "eventId": "401704627",
+    "dateUTC": "2024-10-22T23:30Z",
+    "dateEastern": "2024-10-22",
+    "completed": true,
+    "source": "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401704627",
+    "teams": [
+      {
+        "team": "BOS",
+        "fullGamePoints": 132.0,
+        "periodPoints": [
+          43.0,
+          31.0,
+          39.0,
+          19.0
+        ],
+        "fullGameStats": {
+          "assists": 33.0,
+          "offensiveRebounds": 11.0,
+          "defensiveRebounds": 29.0,
+          "blocks": 3.0
+        },
+        "periodPointsReconcile": true
+      },
+      {
+        "team": "NY",
+        "fullGamePoints": 109.0,
+        "periodPoints": [
+          24.0,
+          31.0,
+          32.0,
+          22.0
+        ],
+        "fullGameStats": {
+          "assists": 20.0,
+          "offensiveRebounds": 5.0,
+          "defensiveRebounds": 29.0,
+          "blocks": 3.0
+        },
+        "periodPointsReconcile": true
+      }
+    ],
+    "player": null
+  }
+}
