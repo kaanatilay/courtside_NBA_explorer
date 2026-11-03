@@ -1,10 +1,33 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
-import { teams, metrics, currentSeason } from './catalog.js';
-import { rowsFor, playersFor, average } from './stats.js';
+import { teams, metrics, fullGameMetrics, cleanMetricSelection, selectedMetrics, percentagePairs, metricAbbreviations, currentSeason } from './catalog.js';
+import { rowsFor, playersFor, average, metricValue } from './stats.js';
 import './styles.css';
 
 const number = value => Number.isFinite(value) ? value.toFixed(1) : '—';
+const formatMetric = (value, key, summary = false) => !Number.isFinite(value) ? '—'
+  : percentagePairs[key] ? `${value.toFixed(1)}%` : summary ? value.toFixed(1) : String(value);
+const selectionKey = 'courtside:metric-selection:v1';
+
+// Browser storage is optional: a blocked or corrupt preference must never keep
+// the stats explorer from loading. No preference is sent to the server.
+function readMetricSelection() {
+  try { const saved = localStorage.getItem(selectionKey); return saved ? cleanMetricSelection(JSON.parse(saved)) : cleanMetricSelection(null); }
+  catch { return cleanMetricSelection(null); }
+}
+
+function MetricChooser({ selection, onChange, player, quarter, saved }) {
+  return <details className="metric-chooser"><summary>Choose stats · {selectedMetrics(selection, { player, quarter }).length} displayed</summary>
+    <p>Counts show per-game averages above and exact values in logs. Shooting % uses combined makes ÷ attempts. Lead changes describes the whole game, not an individual team or player.</p>
+    <div className="metric-options">{fullGameMetrics.map(([key, label]) => {
+      const unavailable = player && key === 'leadChanges';
+      return <label key={key}><input type="checkbox" checked={selection.includes(key)} disabled={unavailable}
+        onChange={e => onChange(e.target.checked ? [...selection, key] : selection.filter(id => id !== key))} />
+        <span>{label}{unavailable && <small>Team/game only</small>}</span></label>;
+    })}</div><button className="close-button" onClick={() => onChange(metrics.map(([key]) => key))}>Restore default stats</button>
+    <p className="sample-caption">{saved ? 'Selection saved in this browser.' : 'Browser storage unavailable; selection lasts for this session.'} Team-quarter values require source/attribution checks and full-game reconciliation. Player-quarter stats remain unverified.</p>
+  </details>;
+}
 const dateLabel = date => new Date(`${date}T12:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 const teamFor = id => teams.find(team => team.id === id);
 const seasonLabel = year => `${year - 1}–${String(year).slice(-2)}`;
@@ -187,6 +210,13 @@ function App() {
   const [view, setView] = useState('teams');
   const [player, setPlayer] = useState(null);
   const [refresh, setRefresh] = useState(0);
+  const [metricSelection, setMetricSelection] = useState(readMetricSelection);
+  const [selectionSaved, setSelectionSaved] = useState(false);
+  useEffect(() => {
+    try { localStorage.setItem(selectionKey, JSON.stringify(metricSelection)); setSelectionSaved(true); }
+    catch { setSelectionSaved(false); }
+  }, [metricSelection]);
+  const displayMetrics = selectedMetrics(metricSelection, { player: view === 'players', quarter });
   const ids = [left, right];
   const query = new URLSearchParams({ left, right, mode, limit, season, refresh: '0', request: String(refresh) });
   const comparison = useData(`/api/comparison?${query}`);
@@ -212,6 +242,7 @@ function App() {
         <label>Look back<select aria-label="Look back" value={limit} onChange={e => changeFilter(setLimit, e.target.value)}><option value="3">Last 3 games</option><option value="5">Last 5 games</option><option value="10">Last 10 games</option></select></label>
         <div className="quarter-control"><span className="filter-label">Period {view === 'players' && '· full game only'}</span><div className="segmented">{['all', '1', '2', '3', '4'].map(q => <button key={q} aria-pressed={quarter === q} disabled={view === 'players' && q !== 'all'} title={view === 'players' && q !== 'all' ? 'Player quarter data is not verified yet.' : undefined} className={quarter === q ? 'active' : ''} onClick={() => setQuarter(q)}>{q === 'all' ? 'Full game' : `Q${q}`}</button>)}</div></div>
       </section>
+      <MetricChooser selection={metricSelection} onChange={setMetricSelection} player={view === 'players'} quarter={quarter} saved={selectionSaved} />
       <section className="results" aria-busy={comparison.loading}>
         <div className="section-heading"><div><p className="eyebrow">YOUR COMPARISON</p><h2>{view === 'teams' ? 'The matchup, at a glance.' : 'Meet the difference makers.'}</h2></div><div className="view-switch">{['teams', 'players'].map(tab => <button key={tab} className={view === tab ? 'active' : ''} aria-pressed={view === tab} onClick={() => selectView(tab)}>{tab === 'teams' ? 'Team stats' : 'Players'}</button>)}</div></div>
         <div className="data-toolbar"><p className="sample-caption">{quarter === 'all' ? 'Full-game (includes OT)' : `Q${quarter}`} averages · {mode === 'matchup' ? 'Head-to-head games' : 'Recent games against all opponents'} · Last {limit} · {seasonLabel(Number(season))}</p></div>
@@ -221,18 +252,19 @@ function App() {
         {comparison.data && <>
           <SavedDataStatus data={comparison.data} />
           <div className="sample-grid">{ids.map((id, i) => <SampleSummary key={id} id={id} rows={rows[i]} limit={limit} />)}</div>
-          {quarter !== 'all' && <p className="availability-note"><strong>Calculated from play-by-play.</strong> Points come from ESPN’s period scores; assists, rebounds and blocks are calculated from recorded plays and checked against full-game totals. “—” means unavailable or a failed check. An average is withheld if any selected game lacks that metric.</p>}
+          {quarter !== 'all' && <p className="availability-note"><strong>Checked team-quarter statistics.</strong> Points come from ESPN’s period scores. Other counts use play-by-play and reconcile to full-game values; shooting % uses combined quarter makes ÷ attempts. Lead changes follow the last non-tied leader across quarter boundaries. “—” means no attempts, missing data or a failed check. Missing observations withhold the sample average.</p>}
           {view === 'teams' ? <>
-            <div className="comparison-table"><div className="stat-header"><span>{left}</span><span>PER GAME</span><span>{right}</span></div>{metrics.map(([key, label]) => {
+            {!displayMetrics.length && <p className="state-message">No selected stats apply to this view. Open Choose stats to select metrics.</p>}
+            <div className="comparison-table"><div className="stat-header"><span>{left}</span><span>PER GAME / SHOOTING %</span><span>{right}</span></div>{displayMetrics.map(([key, label]) => {
               const values = rows.map(items => average(items, key));
               const showBar = values.every(Number.isFinite) && values[0] + values[1] > 0;
-              return <div className="stat-row" key={key}><strong style={{ color: teamFor(left).color }}>{number(values[0])}</strong><div><span>{label}</span>{showBar && <div className="balance"><i style={{ width: `${values[0] / (values[0] + values[1]) * 100}%`, background: teamFor(left).color }} /><i style={{ flex: 1, background: teamFor(right).color }} /></div>}</div><strong style={{ color: teamFor(right).color }}>{number(values[1])}</strong></div>;
+              return <div className="stat-row" key={key}><strong style={{ color: teamFor(left).color }}>{formatMetric(values[0], key, true)}</strong><div><span>{label}</span>{showBar && <div className="balance"><i style={{ width: `${values[0] / (values[0] + values[1]) * 100}%`, background: teamFor(left).color }} /><i style={{ flex: 1, background: teamFor(right).color }} /></div>}</div><strong style={{ color: teamFor(right).color }}>{formatMetric(values[1], key, true)}</strong></div>;
             })}</div>
-            <div className="history-grid">{ids.map((id, index) => <GameHistory key={id} title={`${id} · included games`} rows={rows[index]} quarter={quarter} />)}</div>
+            <div className="history-grid">{ids.map((id, index) => <GameHistory key={id} title={`${id} · included games`} rows={rows[index]} quarter={quarter} displayMetrics={displayMetrics} />)}</div>
           </> : <>
             <p className="availability-note">Roster averages below use appearances within the team sample above. Click a player to search for their own last {limit} appearances with this team and opponent filter, within {seasonLabel(Number(season))}.</p>
             <div className="roster-grid">{ids.map((id, index) => <Roster key={id} id={id} games={samples[index]} selected={player} onSelect={selected => setPlayer({ ...selected, teamId: id })} />)}</div>
-            {player ? <PlayerDetails key={`${player.teamId}-${player.id}`} player={player} opponent={player.teamId === left ? right : left} mode={mode} limit={limit} season={season} refresh={refresh} onClose={() => setPlayer(null)} /> : <div className="detail-hint">↗ Select a player to explore their last appearances and dated game log.</div>}
+            {player ? <PlayerDetails key={`${player.teamId}-${player.id}`} player={player} opponent={player.teamId === left ? right : left} mode={mode} limit={limit} season={season} refresh={refresh} displayMetrics={displayMetrics} onClose={() => setPlayer(null)} /> : <div className="detail-hint">↗ Select a player to explore their last appearances and dated game log.</div>}
           </>}
         </>}
       </section>
@@ -258,7 +290,7 @@ function Roster({ id, games, selected, onSelect }) {
 
 // The server scans older games to find appearances, skipping DNP/missing rows.
 // Detail results have their own loading/error state and visible sample bounds.
-function PlayerDetails({ player, opponent, mode, limit, season, refresh, onClose }) {
+function PlayerDetails({ player, opponent, mode, limit, season, refresh, displayMetrics, onClose }) {
   const query = new URLSearchParams({ left: player.teamId, right: opponent, player: player.id, mode, limit, season, refresh: '0', request: String(refresh) });
   const result = useData(`/api/player?${query}`);
   const rows = rowsFor(result.data?.games || [], player.teamId, 'all', player.id);
@@ -267,7 +299,7 @@ function PlayerDetails({ player, opponent, mode, limit, season, refresh, onClose
     {result.loading && <p role="status">Searching this season for the last {limit} appearances…</p>}
     {result.error && <p role="alert">Couldn’t load this player: {result.error} Close and reopen the details to retry.</p>}
     {result.data && <><p className="sample-caption">{rows.length} of {limit} requested appearances · {result.data.inspected} matching team games checked · {seasonLabel(Number(season))} only. Missing/DNP records excluded; absence alone does not identify why a player missed a game.</p><div className="sample-grid"><SampleSummary id={player.teamId} rows={rows} limit={limit} label="appearances" /></div>
-      <div className="player-metrics">{[['min', 'Minutes'], ...metrics].map(([key, label]) => <div key={key}><span>{label}</span><strong>{number(average(rows, key))}</strong></div>)}</div><GameHistory title="Included player performances" rows={rows} player />
+      <div className="player-metrics">{[['min', 'Minutes'], ...displayMetrics].map(([key, label]) => <div key={key}><span>{label}</span><strong>{formatMetric(average(rows, key), key, true)}</strong></div>)}</div><GameHistory title="Included player performances" rows={rows} player displayMetrics={displayMetrics} />
       <SavedDataStatus data={result.data} />
       <DefenderMatchups player={player} games={result.data.games} season={season} refresh={0} />
     </>}
@@ -306,17 +338,19 @@ function DefenderMatchups({ player, games, season, refresh }) {
 
 // Link every game to its provider record so displayed observations can be
 // checked. Empty samples remain empty; unverified stats display an em dash.
-function GameHistory({ title, rows, player = false, quarter = 'all' }) {
-  return <section className="history"><h3>{title}</h3>{rows.length ? <><div className="table-scroll"><table><thead><tr><th>Date (ET) / source</th><th>Vs</th>{player && <th>MIN</th>}{metrics.map(([key, label]) => <th key={key} title={label}>{key.toUpperCase()}</th>)}</tr></thead><tbody>{rows.map(row => <tr key={row.id}><td><a href={row.source} target="_blank" rel="noreferrer">{dateLabel(row.date)} ↗</a></td><td>{row.opponent}</td>{player && <td>{number(row.min)}</td>}{metrics.map(([key]) => <td key={key}>{Number.isFinite(row[key]) ? row[key] : '—'}</td>)}</tr>)}</tbody></table></div>{!player && quarter !== 'all' && <QuarterChecks rows={rows} />}</> : <p className="sample-caption">No completed matching games were returned for this season.</p>}</section>;
+function GameHistory({ title, rows, player = false, quarter = 'all', displayMetrics = metrics }) {
+  return <section className="history"><h3>{title}</h3>{rows.length ? <><div className="table-scroll"><table><thead><tr><th>Date (ET) / source</th><th>Vs</th>{player && <th>MIN</th>}{displayMetrics.map(([key, label]) => <th key={key} title={label}>{metricAbbreviations[key] || key.toUpperCase()}</th>)}</tr></thead><tbody>{rows.map(row => <tr key={row.id}><td><a href={row.source} target="_blank" rel="noreferrer">{dateLabel(row.date)} ↗</a></td><td>{row.opponent}</td>{player && <td>{number(row.min)}</td>}{displayMetrics.map(([key]) => <td key={key}>{formatMetric(metricValue(row, key), key)}</td>)}</tr>)}</tbody></table></div>{!player && quarter !== 'all' && <QuarterChecks rows={rows} displayMetrics={displayMetrics} />}</> : <p className="sample-caption">No completed matching games were returned for this season.</p>}</section>;
 }
 
 // Explain exactly which included games could not supply a metric, rather than
 // silently dropping them from the average or presenting an unexplained dash.
-function QuarterChecks({ rows }) {
-  const keys = metrics.filter(([key]) => key !== 'pts');
+function QuarterChecks({ rows, displayMetrics }) {
+  const required = new Set(displayMetrics.flatMap(([key]) => percentagePairs[key] || [key]));
+  const keys = fullGameMetrics.filter(([key]) => key !== 'pts' && required.has(key) && !percentagePairs[key]);
+  if (!keys.length) return null;
   const complete = rows.filter(row => keys.every(([key]) => Number.isFinite(row[key]))).length;
   const missing = rows.filter(row => keys.some(([key]) => !Number.isFinite(row[key])));
-  return <div className="quarter-checks"><p>Calculated counts passed checks in {complete}/{rows.length} games.</p>
+  return <div className="quarter-checks"><p>All selected count checks passed in {complete}/{rows.length} games. Other valid metrics remain available when one fails.</p>
     {missing.length > 0 && <details><summary>Why some quarter stats are unavailable</summary><ul>{missing.map(row => <li key={row.id}><strong>{dateLabel(row.date)}:</strong> {keys.filter(([key]) => !Number.isFinite(row[key])).map(([key, label]) => `${label}: ${row.quarterValidation?.unavailable[key] || 'Period data is unavailable.'}`).join(' ')}</li>)}</ul></details>}
   </div>;
 }

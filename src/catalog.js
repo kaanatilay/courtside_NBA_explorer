@@ -35,6 +35,23 @@ export const teams = [
 ];
 export const metrics = [['pts', 'Points'], ['ast', 'Assists'], ['oreb', 'Off. rebounds'], ['dreb', 'Def. rebounds'], ['blk', 'Blocks']];
 
+// Shared definitions keep the chooser, summaries and logs on the same keys.
+// Team-quarter fields share keys with their full-game reconciliation totals.
+export const fullGameMetrics = [...metrics, ['stl', 'Steals'], ['ftm', 'Free throws made'],
+  ['fta', 'Free throws attempted'], ['ftPct', 'Free throw %'], ['tpm', 'Three-pointers made'],
+  ['tpa', 'Three-pointers attempted'], ['tpPct', 'Three point %'], ['leadChanges', 'Lead changes (game)']];
+export const percentagePairs = { ftPct: ['ftm', 'fta'], tpPct: ['tpm', 'tpa'] };
+export const metricAbbreviations = { ftPct: 'FT%', tpPct: '3P%', tpm: '3PM', tpa: '3PA', leadChanges: 'LEADS' };
+
+// Ignore stale/unknown saved keys while preserving deliberate user ordering.
+export function cleanMetricSelection(value) {
+  return Array.isArray(value) ? [...new Set(value.filter(key => fullGameMetrics.some(([id]) => id === key)))] : metrics.map(([key]) => key);
+}
+export function selectedMetrics(keys, { player = false, quarter = 'all' } = {}) {
+  return fullGameMetrics.filter(([key]) => keys.includes(key) && (!player || key !== 'leadChanges')
+    );
+}
+
 // ESPN names a season by its ending year. Use Halifax time, including DST.
 export function currentSeason(now = new Date()) {
   const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Halifax', year: 'numeric', month: 'numeric' }).formatToParts(now);

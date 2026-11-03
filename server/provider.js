@@ -7,7 +7,7 @@ const base = 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba';
 const cacheDirectory = fileURLToPath(new URL('../.data-cache/', import.meta.url));
 // Earlier cache versions lack quarters or use an earlier parser revision.
 // Refetch instead of treating those normalized results as current calculations.
-const CACHE_VERSION = 3;
+const CACHE_VERSION = 5;
 const SCHEDULE_VERSION = 4;
 
 // Save only normalized records used by the app, not unrelated articles/videos.

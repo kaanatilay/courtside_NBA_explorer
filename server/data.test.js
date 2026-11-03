@@ -102,7 +102,7 @@ test('cache reuses responses, refreshes explicitly, and surfaces upstream failur
     await assert.rejects(provider.game('101', true), /503/);
     const cache = JSON.parse(await readFile(join(directory, 'game-101.json'), 'utf8'));
     assert.equal(cache.data.id, '101');
-    assert.equal(cache.version, 3);
+    assert.equal(cache.version, 5);
   } finally {
     // Remove only the unique temporary test folder just created above.
     assert.equal(dirname(resolve(directory)), resolve(tmpdir()));

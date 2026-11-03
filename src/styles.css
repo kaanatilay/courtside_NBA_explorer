@@ -36,6 +36,8 @@ button:disabled{opacity:.4;cursor:not-allowed}
 
 /* All thirty teams share one bounded horizontal rail; the page itself never
    needs to grow sideways. Selected slots stay visible above the comparison. */
+.metric-chooser{margin:18px 0;padding:16px 20px;border:1px solid #ffffff20;border-radius:14px;background:#ffffff04;font-size:12px;line-height:1.7}
+.metric-chooser summary{cursor:pointer;color:#d7e8cb;font-weight:600}.metric-chooser>p{margin:12px 0;color:#acbeb0}.metric-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:16px 0}.metric-options label{display:flex;align-items:center;gap:10px;min-height:36px}.metric-options input{width:17px;height:17px;accent-color:#c4ed94}.metric-options small{display:block;color:#91a499;font-size:10px}.player-metrics{grid-template-columns:repeat(auto-fit,minmax(105px,1fr))}
 .team-picker{margin:30px 0 26px;padding:24px 20px 12px;border:1px solid #ffffff16;border-radius:22px;background:linear-gradient(135deg,#233a314d,#202a2933);min-width:0}
 .picker-heading{display:flex;justify-content:space-between;align-items:center;gap:22px;margin:0 4px 18px}
 .picker-heading .eyebrow{margin-bottom:9px}.picker-heading h2{font-size:24px;font-weight:500;letter-spacing:-.7px;margin:0 0 8px}.picker-heading .sample-caption{margin:0;line-height:1.7}

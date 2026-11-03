@@ -1,6 +1,6 @@
 // Derived team counts are kept separate from ESPN's published period points.
 // A failed metric is withheld for the whole game, preserving honest averages.
-const countingKeys = ['ast', 'oreb', 'dreb', 'blk'];
+const countingKeys = ['ast', 'oreb', 'dreb', 'blk', 'stl', 'ftm', 'fta', 'tpm', 'tpa', 'leadChanges'];
 const allKeys = ['pts', ...countingKeys];
 const emptyCounts = () => Object.fromEntries(allKeys.map(key => [key, 0]));
 const finiteCount = value => Number.isInteger(value) && value >= 0;
@@ -20,7 +20,7 @@ function clockSeconds(value) {
 function eventSignature(play) {
   return JSON.stringify([play.sequenceNumber, play.period?.number, play.clock?.displayValue,
     play.type?.text, play.text, play.team?.id, play.participants?.map(item => item.athlete?.id),
-    play.scoringPlay, play.scoreValue]);
+    play.scoringPlay, play.scoreValue, play.shootingPlay, play.pointsAttempted, play.homeScore, play.awayScore]);
 }
 
 export function deriveTeamQuarters(payload, sides, teamMap) {
@@ -44,7 +44,7 @@ export function deriveTeamQuarters(payload, sides, teamMap) {
           ...Object.fromEntries(countingKeys.map(key => [key, issues[id][key] ? null : counts[id][index][key]])),
         })),
         quarterValidation: { method: 'calculated-from-play-by-play',
-          status: available.length === 4 ? 'checked' : available.length ? 'partial' : 'unavailable',
+          status: available.length === countingKeys.length ? 'checked' : available.length ? 'partial' : 'unavailable',
           unavailable: issues[id], eventCount, duplicatesRemoved: duplicates, reviewEvents: reviews, lateEvents },
       }];
     }));
@@ -139,6 +139,65 @@ export function deriveTeamQuarters(payload, sides, teamMap) {
       if (!primaryMatches || play.scoringPlay || actorTeams.get(participants[1]) !== opponent) {
         for (const team of ids) flag(team, 'blk', 'A block has ambiguous shooter/defender attribution.');
       } else counts[opponent][period - 1].blk++;
+    }
+
+    // Like blocks, a steal is attached to the offensive player's turnover.
+    // Require both participant roles; never credit the offensive event team.
+    if (/\bsteals\b/i.test(text)) {
+      if (!primaryMatches || !/turnover/.test(type) || actorTeams.get(participants[1]) !== opponent || play.scoringPlay) {
+        for (const team of ids) flag(team, 'stl', 'A steal has ambiguous turnover/defender attribution.');
+      } else counts[opponent][period - 1].stl++;
+    }
+
+    // Count actual FT/three-point attempts, including misses and technical FTs.
+    // Ambiguous descriptions or results withhold the affected shooting pair.
+    const freeThrow = /free throw/.test(type);
+    // Full responses have pointsAttempted even when the description omits
+    // distance/'three'. Older compact fixtures may not; do not infer from shot
+    // type, distance or the aggregate total which missed shot was a three.
+    const threeDescription = /\bthree[ -]+point(?:er)?\b/i.test(text);
+    const threePointer = play.pointsAttempted === 3 || threeDescription || play.scoringPlay && play.scoreValue === 3;
+    const ftDescription = /\b(?:makes|misses)\b.*\bfree throw\b/i.test(text);
+    const shotOutcome = /\bmakes\b/i.test(text) ? 'made' : /\bmisses\b/i.test(text) || blocked ? 'missed' : null;
+    const shot = (madeKey, attemptKey, value, recognized) => {
+      const valid = recognized && primaryMatches && shotOutcome &&
+        (shotOutcome === 'made' ? play.scoringPlay === true && play.scoreValue === value : !play.scoringPlay && play.scoreValue === 0);
+      if (!valid) {
+        for (const team of id ? [id] : ids) for (const key of [madeKey, attemptKey]) flag(team, key, 'A shooting attempt has ambiguous shooter/type/result attribution.');
+      } else {
+        counts[id][period - 1][attemptKey]++;
+        if (shotOutcome === 'made') counts[id][period - 1][madeKey]++;
+      }
+    };
+    if (freeThrow || ftDescription) shot('ftm', 'fta', 1, freeThrow);
+    if (threePointer) shot('tpm', 'tpa', 3, !freeThrow && play.shootingPlay === true && (play.pointsAttempted == null || play.pointsAttempted === 3));
+  }
+
+  // Lead changes need chronological scoring, not feed-arrival order. Retain
+  // the last non-tied leader across ties and periods; the first lead isn't a
+  // change. Check every scoring snapshot so late corrections cannot silently
+  // assign a lead change to the wrong point in time. Credit the game count to
+  // both team rows (it is not a team-specific achievement).
+  const home = ids.find(id => sides[id].homeAway === 'home');
+  const away = ids.find(id => sides[id].homeAway === 'away');
+  if (!home || !away || home === away) {
+    for (const id of ids) flag(id, 'leadChanges', 'Home/away identities are missing for score chronology.');
+  } else {
+    const scores = Object.fromEntries(ids.map(id => [id, 0]));
+    let leader = null;
+    const chronological = [...plays].sort((a, b) => a.period.number - b.period.number ||
+      clockSeconds(b.clock.displayValue) - clockSeconds(a.clock.displayValue) || Number(a.sequenceNumber) - Number(b.sequenceNumber));
+    for (const play of chronological.filter(p => p.scoringPlay)) {
+      const id = teamIds.get(String(play.team?.id));
+      scores[id] += play.scoreValue;
+      if (!finiteCount(play.homeScore) || !finiteCount(play.awayScore) || scores[home] !== play.homeScore || scores[away] !== play.awayScore) {
+        for (const team of ids) flag(team, 'leadChanges', 'Chronological scoring does not match recorded score snapshots; lead changes cannot be verified.');
+      }
+      const next = scores[home] > scores[away] ? home : scores[away] > scores[home] ? away : null;
+      if (next) {
+        if (leader && next !== leader) for (const team of ids) counts[team][play.period.number - 1].leadChanges++;
+        leader = next;
+      }
     }
   }
 

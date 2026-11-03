@@ -16,7 +16,7 @@ const countingKeys = ['ast', 'oreb', 'dreb', 'blk'];
 test('six manually tallied team periods match all five metrics', () => {
   for (const check of manual.checks) {
     const side = normalizeGame(fixtures[check.gameId]).sides[check.team];
-    assert.deepEqual(side.periods[check.period - 1], check.expected, `${check.gameId} ${check.team} P${check.period}`);
+    assert.deepEqual(Object.fromEntries(Object.keys(check.expected).map(key => [key, side.periods[check.period - 1][key]])), check.expected, `${check.gameId} ${check.team} P${check.period}`);
     const plays = fixtures[check.gameId].plays;
     for (const key of ['assistEventSuffixes', 'offensiveReboundSuffixes', 'defensiveReboundSuffixes', 'blockSuffixes']) {
       assert.ok(check[key].every(suffix => plays.some(play => play.id === `${check.gameId}${suffix}` && play.period.number === check.period)));
@@ -29,7 +29,8 @@ test('six manually tallied team periods match all five metrics', () => {
 
 test('all four complete feeds reconcile every metric, including overtime', () => {
   for (const id of ids) for (const side of Object.values(normalizeGame(fixtures[id]).sides)) {
-    assert.equal(side.quarterValidation.status, 'checked', id);
+    // New fields have independent checks; the original five remain validated.
+    assert(countingKeys.every(key => !side.quarterValidation.unavailable[key]), id);
     for (const key of ['pts', ...countingKeys]) assert.equal(side.periods.reduce((sum, row) => sum + row[key], 0), side.stats[key], `${id} ${key}`);
   }
   const overtime = normalizeGame(fixtures['401703371']).sides.DET;

@@ -20,6 +20,16 @@ const abbreviations = { GS: 'GSW', NY: 'NYK', NO: 'NOP', SA: 'SAS', UTAH: 'UTA',
 const canonicalId = value => abbreviations[value] || value;
 const statKeys = { pts: 'PTS', ast: 'AST', oreb: 'OREB', dreb: 'DREB', blk: 'BLK', min: 'MIN' };
 
+// Reject malformed/negative/impossible shooting pairs as a unit. Missing values
+// must not become 0 makes or 0 attempts and contaminate combined percentages.
+export function shootingPair(value) {
+  const match = typeof value === 'string' && value.match(/^\s*(\d+)\s*-\s*(\d+)\s*$/);
+  if (!match) return [null, null];
+  const [made, attempted] = match.slice(1).map(Number);
+  return Number.isSafeInteger(made) && Number.isSafeInteger(attempted) && made <= attempted ? [made, attempted] : [null, null];
+}
+const nonnegativeCount = value => { const n = numeric(value); return Number.isSafeInteger(n) && n >= 0 ? n : null; };
+
 // Use event metadata: ESPN's top-level season can describe today's season even
 // for historical requests. Cup championship games are outside regular totals.
 export function eventClassification(event) {
@@ -61,6 +71,11 @@ export function normalizeGame(payload) {
     if (!box?.statistics || !roster?.statistics?.length) throw new Error('A team box score is missing.');
     const stat = key => numeric(box.statistics.find(stat => stat.name === key)?.displayValue);
     const stats = { pts: numeric(competitor.score), ast: stat('assists'), oreb: stat('offensiveRebounds'), dreb: stat('defensiveRebounds'), blk: stat('blocks') };
+    const display = key => box.statistics.find(stat => stat.name === key)?.displayValue;
+    [stats.ftm, stats.fta] = shootingPair(display('freeThrowsMade-freeThrowsAttempted'));
+    [stats.tpm, stats.tpa] = shootingPair(display('threePointFieldGoalsMade-threePointFieldGoalsAttempted'));
+    stats.stl = nonnegativeCount(display('steals'));
+    stats.leadChanges = nonnegativeCount(display('leadChanges'));
     const periods = (competitor.linescores || []).map(line => ({ pts: numeric(line.displayValue ?? line.value) }));
     // Incomplete period breakdowns are unavailable rather than shown as valid.
     const reconciled = periods.length >= 4 && periods.every(period => period.pts != null)
@@ -71,6 +86,10 @@ export function normalizeGame(payload) {
         const value = index < 0 ? null : player.stats?.[index];
         return [key, key === 'min' ? minutes(value) : numeric(value)];
       }));
+      const playerValue = label => { const index = group.labels?.indexOf(label) ?? -1; return index < 0 ? null : player.stats?.[index]; };
+      [playerStats.ftm, playerStats.fta] = shootingPair(playerValue('FT'));
+      [playerStats.tpm, playerStats.tpa] = shootingPair(playerValue('3PT'));
+      playerStats.stl = nonnegativeCount(playerValue('STL'));
       // Zero displayed minutes can be a short appearance rounded down. A DNP
       // flag, however, always excludes that player from appearance averages.
       const played = player.didNotPlay !== true && playerStats.min != null;

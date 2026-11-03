@@ -1,0 +1,255 @@
+<div id="nba-attribute-map">
+  <h2>NBA data: source → category → individual field</h2>
+  <div class="viz-controls">
+    <label class="form-label">Open branch<select class="form-select" id="nba-branch"></select></label>
+    <label class="form-label">Find a field<input class="form-control" id="nba-search" type="search" placeholder="steals, attempts, threes…"></label>
+  </div>
+  <div id="nba-search-results" hidden><label class="form-label">Matching fields<select class="form-select" id="nba-matches" size="4"></select></label></div>
+  <div class="viz-row nba-legend">
+    <span>● Displayed</span><span>○ Saved, hidden</span><span>◆ Calculated + displayed</span><span>⚠ Experimental</span>
+  </div>
+  <div class="viz-row">
+    <button class="btn" id="nba-out" aria-label="Zoom out">−</button><span id="nba-zoom" class="tabular-nums">80%</span><button class="btn" id="nba-in" aria-label="Zoom in">+</button>
+    <button class="btn" id="nba-home">Source / categories</button><button class="btn" id="nba-fields">Focus fields</button>
+    <span class="text-small">Drag to pan · Wheel or +/− to zoom · Select a field for details</span>
+  </div>
+  <svg id="nba-canvas" role="img" aria-label="Interactive NBA attribute map. Drag to pan, zoom with buttons, or choose a branch and a field using the controls." tabindex="0"><title>NBA statistical fields and interface availability</title><g id="nba-graph"></g></svg>
+  <div id="nba-detail" role="status" aria-live="polite"></div>
+  <p class="text-small">Current system inventory, November 2, 2026. Core basketball fields, not incidental news/media metadata. Field availability can vary by game. Original-response fields still need extraction before display.</p>
+</div>
+<style>
+#nba-attribute-map{display:grid;gap:calc(var(--font-size-base)*.8);color:var(--foreground)}
+#nba-attribute-map .nba-legend{justify-content:flex-start;gap:calc(var(--font-size-base)*1.2)}
+#nba-attribute-map #nba-canvas{display:block;width:100%;height:calc(var(--font-size-base)*40);border:1px solid var(--border);touch-action:none;background:var(--background);cursor:grab}
+#nba-attribute-map #nba-canvas:active{cursor:grabbing}
+#nba-attribute-map .nba-node:focus-visible{outline:2px solid var(--ring)}
+#nba-attribute-map .nba-node text{fill:var(--foreground);font-weight:400;pointer-events:none}
+#nba-attribute-map .nba-edge{fill:none;stroke:var(--border);stroke-width:1.3;vector-effect:non-scaling-stroke}
+#nba-attribute-map .nba-shape{fill:var(--muted);stroke:var(--border);vector-effect:non-scaling-stroke}
+#nba-attribute-map .nba-shape.visible{fill:color-mix(in srgb,var(--viz-series-1) 14%,var(--background))}
+#nba-attribute-map .nba-shape.hidden{fill:var(--muted)}
+#nba-attribute-map .nba-shape.derived{fill:color-mix(in srgb,var(--viz-series-2) 14%,var(--background))}
+#nba-attribute-map .nba-shape.experimental{fill:color-mix(in srgb,var(--viz-series-3) 14%,var(--background))}
+#nba-attribute-map .nba-selected .nba-shape{stroke:var(--ring);stroke-width:2}
+#nba-attribute-map #nba-detail{min-height:calc(var(--font-size-base)*6);display:grid;align-content:start;gap:calc(var(--font-size-base)*.4)}
+#nba-attribute-map #nba-detail p{margin:0}
+</style>
+<script>
+(() => {
+  const root = document.getElementById('nba-attribute-map');
+  const $ = s => root.querySelector(s);
+  const svg = $('#nba-canvas'), graph = $('#nba-graph');
+  const NS = 'http://www.w3.org/2000/svg';
+  const sources = {
+    espn: { title:'ESPN', subtitle:'Game summaries + schedules', x:20,y:180,w:220,h:78 },
+    nba: { title:'NBA Stats archive', subtitle:'via SportsDataverse', x:20,y:640,w:220,h:78 },
+    app: { title:'Our application', subtitle:'Calculations + retrieval metadata', x:20,y:790,w:220,h:78 }
+  };
+  const status = { visible:'● Displayed now', hidden:'○ Saved, not displayed', derived:'◆ Calculated + displayed', experimental:'⚠ Experimental / unresolved' };
+  const rawTeam = 'Saved in the original ESPN team box score; not currently prepared as an interface metric.';
+  const rawPlayer = 'Saved in the original ESPN player box score; not currently prepared as an interface metric.';
+  const shownTeam = 'Normalized and displayed in team summaries, averages and dated logs. Full-game values include overtime.';
+  const shownPlayer = 'Normalized and displayed in player details and dated appearance logs. Full-game values include overtime.';
+  const shooting = 'Saved as a combined makes–attempts string. The individual number can be extracted without another provider; parsing and checks still need to be implemented.';
+  const f = (label, state, key, note, alias='') => ({label,state,key,note,alias});
+  const groups = [
+    {id:'team',source:'espn',title:'Team · full game',scope:'ESPN summary → boxscore.teams[].statistics; points use final score',cycle:'Included in current-season league refresh; past seasons fetched on demand.',fields:[
+      f('Points','visible','competitors[].score',shownTeam,'PTS'),
+      f('Assists','visible','assists',shownTeam,'AST'),
+      f('Offensive rebounds','visible','offensiveRebounds',shownTeam,'OREB ORB'),
+      f('Defensive rebounds','visible','defensiveRebounds',shownTeam,'DREB DRB'),
+      f('Blocks','visible','blocks',shownTeam,'BLK'),
+      f('Total rebounds','hidden','totalRebounds',rawTeam,'REB RPG'),
+      f('Field goals made','hidden','fieldGoalsMade-fieldGoalsAttempted',shooting,'FGM made shots'),
+      f('Field goals attempted','hidden','fieldGoalsMade-fieldGoalsAttempted',shooting,'FGA attempted shots attempts'),
+      f('Field-goal percentage','hidden','fieldGoalPct',rawTeam,'FG%'),
+      f('Three-pointers made','hidden','threePointFieldGoalsMade-threePointFieldGoalsAttempted',shooting,'3PM made threes 3PT'),
+      f('Three-pointers attempted','hidden','threePointFieldGoalsMade-threePointFieldGoalsAttempted',shooting,'3PA threes attempts 3PT'),
+      f('Three-point percentage','hidden','threePointFieldGoalPct',rawTeam,'3P% 3PT%'),
+      f('Free throws made','hidden','freeThrowsMade-freeThrowsAttempted',shooting,'FTM'),
+      f('Free throws attempted','hidden','freeThrowsMade-freeThrowsAttempted',shooting,'FTA attempts'),
+      f('Free-throw percentage','hidden','freeThrowPct',rawTeam,'FT%'),
+      f('Steals','hidden','steals',rawTeam,'STL'),
+      f('Turnovers','hidden','turnovers',rawTeam+' Kept distinct from team and total turnovers.','TO TOV'),
+      f('Team turnovers','hidden','teamTurnovers',rawTeam+' A separate provider field, not automatically equivalent to player turnovers.','TO TOV'),
+      f('Total turnovers','hidden','totalTurnovers',rawTeam+' Its definition must stay distinct from the other turnover fields.','TO TOV'),
+      f('Fouls','hidden','fouls',rawTeam,'PF'),
+      f('Technical fouls','hidden','technicalFouls',rawTeam,'TF'),
+      f('Total technical fouls','hidden','totalTechnicalFouls',rawTeam+' Separate provider field; definitions need care.'),
+      f('Flagrant fouls','hidden','flagrantFouls',rawTeam),
+      f('Points conceded off turnovers','hidden','turnoverPoints',rawTeam+' ESPN labels this CONCEDED, not points scored off turnovers.'),
+      f('Fast-break points','hidden','fastBreakPoints',rawTeam),
+      f('Points in the paint','hidden','pointsInPaint',rawTeam,'PITP paint'),
+      f('Largest lead','hidden','largestLead',rawTeam),
+      f('Lead changes','hidden','leadChanges',rawTeam+' Present in current saved games; not universal historical coverage.'),
+      f('Percentage of game led','hidden','leadPercentage',rawTeam+' Present in current saved games; not universal historical coverage.')
+    ]},
+    {id:'player',source:'espn',title:'Player · full game',scope:'ESPN summary → boxscore.players[].statistics[].athletes[]',cycle:'All supplied player records are saved for each collected game, including DNP records.',fields:[
+      f('Minutes','visible','MIN',shownPlayer+' Provider precision is preserved; many records have rounded whole minutes.','MIN'),
+      f('Points','visible','PTS',shownPlayer),f('Assists','visible','AST',shownPlayer),
+      f('Offensive rebounds','visible','OREB',shownPlayer,'ORB'),f('Defensive rebounds','visible','DREB',shownPlayer,'DRB'),
+      f('Blocks','visible','BLK',shownPlayer),f('Total rebounds','hidden','REB',rawPlayer,'RPG'),
+      f('Field goals made','hidden','FG',shooting,'FGM shots'),f('Field goals attempted','hidden','FG',shooting,'FGA attempted shots attempts'),
+      f('Three-pointers made','hidden','3PT',shooting,'3PM made threes'),f('Three-pointers attempted','hidden','3PT',shooting,'3PA threes attempts'),
+      f('Free throws made','hidden','FT',shooting,'FTM'),f('Free throws attempted','hidden','FT',shooting,'FTA'),
+      f('Steals','hidden','STL',rawPlayer),f('Turnovers','hidden','TO',rawPlayer,'TOV'),
+      f('Personal fouls','hidden','PF',rawPlayer),f('Plus/minus','hidden','+/-',rawPlayer+' Team scoring margin while the player is on court.','plus minus'),
+      f('Did not play indicator','hidden','didNotPlay','Saved and used to exclude DNPs from appearances; not exposed as a DNP table.','DNP')
+    ]},
+    {id:'quarter',source:'espn',title:'Team · each period',scope:'ESPN line scores + checked calculation from ESPN play-by-play',cycle:'Included with collected games. UI selects Q1–Q4; overtime periods are retained separately.',fields:[
+      f('Quarter points','visible','competitors[].linescores','Published period points, checked against the final score. Q4 excludes overtime.','PTS Q1 Q2 Q3 Q4'),
+      f('Quarter assists','derived','plays → period / assist attribution','Calculated and displayed only when parser checks pass.','AST'),
+      f('Quarter offensive rebounds','derived','plays → period / rebound attribution','Calculated and displayed only when parser checks pass.','OREB'),
+      f('Quarter defensive rebounds','derived','plays → period / rebound attribution','Calculated and displayed only when parser checks pass.','DREB'),
+      f('Quarter blocks','derived','plays → period / block attribution','Calculated and displayed only when parser checks pass.','BLK'),
+      f('Overtime period points','hidden','linescores[period >= 5]','Saved when supplied; full game includes them, but there is no standalone OT selector.','OT'),
+      f('Overtime assists','hidden','checked derived periods >= 5','Retained in normalized periods when checks pass; no standalone OT selector.','AST OT'),
+      f('Overtime offensive rebounds','hidden','checked derived periods >= 5','Retained when checks pass; no standalone OT selector.','OREB OT'),
+      f('Overtime defensive rebounds','hidden','checked derived periods >= 5','Retained when checks pass; no standalone OT selector.','DREB OT'),
+      f('Overtime blocks','hidden','checked derived periods >= 5','Retained when checks pass; no standalone OT selector.','BLK OT')
+    ]},
+    {id:'game',source:'espn',title:'Game / identity fields',scope:'ESPN header, team/player identities and normalized schedules',cycle:'Game identities are saved; schedules retain eligible completed regular-season events.',fields:[
+      f('Game date (Eastern)','visible','competition.date → date','Displayed in logs; UTC timestamp is also preserved.'),
+      f('Original start timestamp','hidden','competition.date','Saved in UTC; used for sorting and seven-day correction selection.'),
+      f('Opponent','visible','competitors / game.sides','Derived from the other team in a two-team game.'),
+      f('Home / away','hidden','competitors[].homeAway','Saved but not explicitly labeled in logs.'),
+      f('Final score, each team','visible','competitors[].score','Available as each team’s full-game points; no dedicated combined final-score column.'),
+      f('Team names / abbreviations','visible','team identities + catalog','All 30 selectable; catalog stores display labels and accents.'),
+      f('Player names','visible','athlete.displayName','Participant list and details; not a complete active-roster directory.'),
+      f('ESPN game ID','hidden','header.id / event.id','Unique key used for storage; also embedded in source links.'),
+      f('ESPN team ID','hidden','team.id','Used for retrieval and identity checks.'),
+      f('ESPN player ID','hidden','athlete.id','Used for appearances and source mapping.'),
+      f('Event season year','hidden','event.season.year','Saved in schedule records and checked against the requested season.'),
+      f('Event season type','hidden','event.seasonType','Checked for regular season; not a selectable playoff mode.'),
+      f('Competition classification','hidden','seasonType + event notes','Our derived label excludes Cup finals from regular-season samples.'),
+      f('Completed status','hidden','competition.status.type.completed','Used as an eligibility rule; future/in-progress records are excluded from normalized schedules.')
+    ]},
+    {id:'plays',source:'espn',title:'Play-by-play fields',scope:'ESPN summary → plays[]',cycle:'Original event records saved with games; no event-by-event interface.',fields:[
+      f('Event ID','hidden','plays[].id','Used to deduplicate events.'),f('Sequence number','hidden','sequenceNumber','Event ordering metadata.'),
+      f('Event type','hidden','type','Provider event category, such as rebound or shot.'),f('Event description','hidden','text','Original provider description; parsed for selected team counts.'),
+      f('Period number','hidden','period','Used for quarter calculations.'),f('Game clock','hidden','clock','Used in validation; not validated player-minute reconstruction.'),
+      f('Event team identity','hidden','team','Used for attribution checks.'),f('Participant identities','hidden','participants','Used for attribution checks; not proof that all player roles are resolved.'),
+      f('Scoring-event indicator','hidden','scoringPlay','Provider flag.'),f('Points scored by event','hidden','scoreValue','Used to reconcile points.'),
+      f('Shooting-event indicator','hidden','shootingPlay','Original provider flag; no shot chart feature.'),
+      f('Running home score','hidden','homeScore','Original event score.'),f('Running away score','hidden','awayScore','Original event score.')
+    ]},
+    {id:'matchup',source:'nba',title:'Defender matchup fields',scope:'NBA boxscorematchupsv3 + SportsDataverse game/player identity files',cycle:'Separate on-demand tracking request and temporary cache; NOT in league refresh. Current no-results issue unresolved.',fields:[
+      f('Defender name','experimental','firstName / familyName','Panel implemented, but current retrieval is unresolved.'),
+      f('Matchup time','experimental','matchupMinutes','Recorded offense–defender time, not full-game minutes.'),
+      f('Precise matchup seconds','experimental','matchupMinutesSort','Used to rank defenders; displayed clock is rounded.'),
+      f('Player points in matchup','experimental','playerPoints','Tracking attribution may overlap; do not sum to reconstruct full-game points.','PTS'),
+      f('Player assists in matchup','experimental','matchupAssists','Archived tracking attribution.','AST'),
+      f('Player turnovers in matchup','experimental','matchupTurnovers','Archived tracking attribution.','TO TOV'),
+      f('Defender blocks in matchup','experimental','matchupBlocks','Blocks belong to the defender.','BLK'),
+      f('Matchup field goals made','experimental','matchupFieldGoalsMade','Selected offensive player’s shooting.','FGM'),
+      f('Matchup field goals attempted','experimental','matchupFieldGoalsAttempted','Selected offensive player’s shooting.','FGA'),
+      f('Matchup three-pointers made','experimental','matchupThreePointersMade','Selected offensive player’s shooting.','3PM threes'),
+      f('Matchup three-pointers attempted','experimental','matchupThreePointersAttempted','Selected offensive player’s shooting.','3PA threes'),
+      f('Primary defender / ties','experimental','rank by matchupMinutesSort','Calculated from greatest recorded matchup time, not a defensive-quality rating.'),
+      f('NBA game / player / defender IDs','experimental','gameId / personId + crosswalk','Mapping fields cached separately; never interchangeable with ESPN IDs.')
+    ]},
+    {id:'summary',source:'app',title:'Calculated sample fields',scope:'Our sample selection and arithmetic over ESPN normalized records',cycle:'Calculated when viewing a selection; these are not extra provider downloads.',fields:[
+      f('Average team points','derived','mean(pts)','Uses the selected full games or quarter rows.'),f('Average team assists','derived','mean(ast)','Withheld if any included value is missing.'),
+      f('Average team offensive rebounds','derived','mean(oreb)','Withheld if any included value is missing.'),f('Average team defensive rebounds','derived','mean(dreb)','Withheld if any included value is missing.'),
+      f('Average team blocks','derived','mean(blk)','Withheld if any included value is missing.'),
+      f('Average player minutes','derived','mean(min)','Roster uses the team sample; details use the player’s own appearances.'),
+      f('Average player points','derived','mean(pts)','Roster and player detail samples may differ.'),f('Average player assists','derived','mean(ast)','Roster and player detail samples may differ.'),
+      f('Average player offensive rebounds','derived','mean(oreb)','Shown in details, not roster list.'),f('Average player defensive rebounds','derived','mean(dreb)','Shown in details, not roster list.'),
+      f('Average player blocks','derived','mean(blk)','Shown in details, not roster list.'),
+      f('Actual game / appearance count','derived','sample length','Can be fewer than requested; DNPs do not count as appearances.'),
+      f('Sample date range','derived','oldest/newest included date','Shown with sample size.'),
+      f('Matching team games inspected','derived','player scan count','Shown in player detail; can exceed appearance count.')
+    ]},
+    {id:'provenance',source:'app',title:'Quality / update metadata',scope:'Our SQLite records, quarter checks and retrieval cycle state',cycle:'Game timestamps persist; cycle progress/summary is in server memory, not durable history.',fields:[
+      f('Source link','visible','source_url / source','Links to ESPN or the matchup archive as appropriate.'),
+      f('Download timestamp','visible','fetched_at','UI shows oldest download across the sample, not an individual timestamp per row.'),
+      f('Local import timestamp','hidden','imported_at','SQLite metadata; distinct from original fixture download time.'),
+      f('Saved-record indicator','visible','savedRecordsUsed','Indicates local reuse.'),
+      f('Quarter check status','visible','quarterValidation.status','Shown as passing-game counts.'),
+      f('Quarter unavailable reasons','visible','quarterValidation.unavailable','Displayed when metrics are withheld.'),
+      f('Quarter event / duplicate / review counts','hidden','quarterValidation fields','Internal validation metadata, not independent proof of attribution.'),
+      f('Cycle phase / progress','visible','refresh status','Current run only; restart loses its progress summary.'),
+      f('Games added / re-downloaded / reused','visible','refresh status counts','Re-downloaded does not imply changed statistics.'),
+      f('Download failures','visible','warnings / refresh failures','Reported explicitly; saved records preserved where available.')
+    ]}
+  ];
+  // Milestone 1: full-game selector now exposes these formerly raw-only fields.
+  // The original source keys remain useful even though display uses normalization.
+  const newVisible = new Set(['Steals','Free throws made','Free throws attempted','Three-pointers made','Three-pointers attempted']);
+  for (const g of groups.filter(g=>g.id==='team'||g.id==='player')) {
+    for (const field of g.fields) {
+      if (newVisible.has(field.label) || g.id==='team'&&field.label==='Lead changes') {
+        field.state='visible';
+        field.note='Available through Choose stats in full-game summaries and logs. Saved source values are normalized; missing or malformed values stay unavailable. Team-quarter additions are the next validation milestone.';
+        if(field.label==='Lead changes')field.note+=' This describes the entire game; it is not credited to a player or to one team. Historical feeds may omit it.';
+      }
+      if (field.label==='Free-throw percentage'||field.label==='Three-point percentage') {
+        field.state='derived';field.key=field.label==='Free-throw percentage'?'ftm / fta':'tpm / tpa';
+        field.note='Selectable full-game metric. Uses total makes ÷ total attempts across the sample, not the average of game percentages. Zero attempts or missing required data is unavailable.';
+      }
+    }
+    if(g.id==='player')g.fields.push(
+      f('Free-throw percentage','derived','FT → ftm / fta','Selectable full-game metric calculated from combined makes/attempts; zero attempts or missing data is unavailable.','FT%'),
+      f('Three-point percentage','derived','3PT → tpm / tpa','Selectable full-game metric calculated from combined makes/attempts; zero attempts or missing data is unavailable.','3P%')
+    );
+  }
+  // Milestone 2: team-quarter additions are selectable only when event checks
+  // and full-game reconciliation pass. Player-quarter fields remain absent.
+  const quarterGroup=groups.find(g=>g.id==='quarter');
+  quarterGroup.fields.push(
+    f('Quarter steals','derived','plays → turnover + verified opposing stealer','Selectable when attribution and full-game steal totals reconcile.','STL'),
+    f('Quarter free throws made','derived','free throw event → ftm','Includes technical FTs. Checked shooter/type/result; reconciles full-game makes.','FTM'),
+    f('Quarter free throws attempted','derived','free throw event → fta','Includes valid misses; reconciles full-game attempts.','FTA'),
+    f('Quarter free-throw percentage','derived','sum(ftm) / sum(fta)','Combined quarter makes/attempts; missing counts or no attempts is unavailable.','FT%'),
+    f('Quarter three-pointers made','derived','scoringPlay + scoreValue / pointsAttempted → tpm','Checked event counts reconcile full-game makes; mismatches are withheld.','3PM threes'),
+    f('Quarter three-pointers attempted','derived','pointsAttempted / explicit three-point event → tpa','No distance/aggregate inference. Missing/conflicting metadata or total mismatches withhold attempts.','3PA threes'),
+    f('Quarter three-point percentage','derived','sum(tpm) / sum(tpa)','Combined quarter makes/attempts; missing counts or no attempts is unavailable.','3P%'),
+    f('Quarter game lead changes','derived','chronological scoring + score snapshots','Last non-tied leader carries across quarters. Counts must match full-game leadChanges; absent comparator or inconsistent snapshots is unavailable.')
+  );
+  groups.find(g=>g.id==='plays').fields.push(f('Points attempted by shot','hidden','pointsAttempted','Structured shot value used to classify missed threes when descriptions omit the value; older compact fixtures may lack it.'));
+  for(const group of groups.filter(g=>g.id==='team'||g.id==='player'))for(const field of group.fields){
+    field.note=field.note.replace('Team-quarter additions are the next validation milestone.','Team-quarter additions are now selectable when their own checks pass.');
+  }
+  groups.forEach((g,i) => {g.x=300;g.y=30+i*103;g.w=270;g.h=72;g.fields.forEach((field,j)=>{field.id=g.id+'-'+j;field.group=g;});});
+  const all=groups.flatMap(g=>g.fields);
+  const stored=window.openai?.widgetState?.modelContent;
+  let active=groups.find(g=>g.id===stored?.branch)||groups[0], selected=null;
+  let cam={x:12,y:12,k:.8}, width=736,height=560, dragging=null;
+  function el(tag,attrs={},text){const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(text!==undefined)n.textContent=text;return n;}
+  function save(){window.openai?.setWidgetState({modelContent:{branch:active.id,selectedField:selected?.label||null,source:active.source},privateContent:null}).catch(()=>{});}
+  function wrap(text,max=29){const words=text.split(' '),lines=[''];for(const word of words){const i=lines.length-1;if((lines[i]+' '+word).trim().length>max&&lines[i])lines.push(word);else lines[i]=(lines[i]+' '+word).trim();}return lines;}
+  function textNode(parent,text,x,y,size=14){const t=el('text',{x,y,'font-size':size/cam.k});t.textContent=text;parent.append(t);}
+  function edge(x1,y1,x2,y2){const mid=(x1+x2)/2;graph.append(el('path',{d:`M ${x1} ${y1} C ${mid} ${y1},${mid} ${y2},${x2} ${y2}`,class:'nba-edge'}));}
+  function shape(n,kind,state){let s;if(kind==='source')s=el('rect',{width:n.w,height:n.h,rx:30});else if(kind==='category')s=el('path',{d:`M 14 0 H ${n.w-14} L ${n.w} 14 V ${n.h-14} L ${n.w-14} ${n.h} H 14 L 0 ${n.h-14} V 14 Z`});else s=el('rect',{width:n.w,height:n.h,rx:2});s.setAttribute('class','nba-shape '+(state||''));return s;}
+  function sourceNode(s){const n=el('g',{transform:`translate(${s.x},${s.y})`});n.append(shape(s,'source'));textNode(n,s.title,16,29);textNode(n,s.subtitle,16,53,11);graph.append(n);}
+  function render(){
+    graph.replaceChildren();graph.setAttribute('transform',`translate(${cam.x},${cam.y}) scale(${cam.k})`);
+    $('#nba-zoom').textContent=Math.round(cam.k*100)+'%';
+    for(const g of groups){const s=sources[g.source];edge(s.x+s.w,s.y+s.h/2,g.x,g.y+g.h/2);}
+    const leafStart=active.y;
+    active.fields.forEach((f,i)=>{f.x=650;f.y=leafStart+i*88;f.w=350;f.h=74;edge(active.x+active.w,active.y+active.h/2,f.x,f.y+f.h/2);});
+    Object.values(sources).forEach(sourceNode);
+    for(const g of groups){const n=el('g',{transform:`translate(${g.x},${g.y})`,class:'nba-node '+(g===active?'nba-selected':''),role:'button',tabindex:0,'aria-label':g.title+', '+g.fields.length+' fields. Expand branch.'});n.append(shape(g,'category'));textNode(n,g.title,14,27,13);textNode(n,`${g.fields.length} fields · ${g===active?'open':'select to open'}`,14,52,11);n.addEventListener('click',()=>open(g));n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(g);}});graph.append(n);}
+    for(const f of active.fields){const n=el('g',{transform:`translate(${f.x},${f.y})`,class:'nba-node '+(selected===f?'nba-selected':''),role:'button',tabindex:0,'aria-label':f.label+', '+status[f.state]});n.append(shape(f,'field',f.state));const lines=wrap(f.label,Math.floor(36*cam.k));lines.slice(0,2).forEach((line,i)=>textNode(n,line,15,24+i*18,13));textNode(n,status[f.state],15,63,11);n.addEventListener('click',()=>select(f));n.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(f);}});graph.append(n);}
+  }
+  function detail(f){const box=$('#nba-detail');box.replaceChildren();const lines=f?[[`${active.title} → ${f.label}`,true],[`${status[f.state]} · ${sources[active.source].title}`,false],[f.note,false],[`Source field: ${f.key}`,false],[active.cycle,false]]:[[active.title,true],[active.scope,false],[active.cycle,false]];for(const [value,strong]of lines){const p=document.createElement('p');if(strong){const b=document.createElement('strong');b.textContent=value;p.append(b);}else p.textContent=value;box.append(p);}}
+  function open(g){active=g;selected=null;$('#nba-branch').value=g.id;cam.y=40-g.y*cam.k;cam.x=12;render();detail(null);save();}
+  function select(f){selected=f;detail(f);render();save();}
+  function focusFields(){cam.x=20-650*cam.k;cam.y=40-active.y*cam.k;render();}
+  function zoom(k,cx=width/2,cy=height/2){k=Math.max(.8,Math.min(1.8,k));const r=k/cam.k;cam.x=cx-(cx-cam.x)*r;cam.y=cy-(cy-cam.y)*r;cam.k=k;render();}
+  groups.forEach(g=>{const o=document.createElement('option');o.value=g.id;o.textContent=g.title;$('#nba-branch').append(o);});$('#nba-branch').value=active.id;
+  $('#nba-branch').addEventListener('change',e=>open(groups.find(g=>g.id===e.target.value)));
+  $('#nba-in').addEventListener('click',()=>zoom(cam.k+.15));$('#nba-out').addEventListener('click',()=>zoom(cam.k-.15));
+  $('#nba-home').addEventListener('click',()=>{cam={x:12,y:12,k:.8};render();});$('#nba-fields').addEventListener('click',focusFields);
+  $('#nba-search').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();const list=$('#nba-matches');list.replaceChildren();$('#nba-search-results').hidden=!q;if(!q)return;for(const f of all.filter(f=>(f.label+' '+f.alias+' '+f.key+' '+f.group.title).toLowerCase().includes(q))){const o=document.createElement('option');o.value=f.id;o.textContent=`${f.group.title} → ${f.label} — ${status[f.state]}`;list.append(o);}if(!list.options.length){const o=document.createElement('option');o.textContent='No collected field found. Player-quarter stats/minutes are not established.';o.disabled=true;list.append(o);}list.selectedIndex=-1;});
+  $('#nba-matches').addEventListener('change',e=>{const f=all.find(f=>f.id===e.target.value);if(!f)return;open(f.group);selected=f;cam.x=20-650*cam.k;cam.y=80-f.y*cam.k;detail(f);render();save();});
+  svg.addEventListener('wheel',e=>{e.preventDefault();const rect=svg.getBoundingClientRect();zoom(cam.k*Math.exp(-e.deltaY*.0015),e.clientX-rect.left,e.clientY-rect.top);},{passive:false});
+  svg.addEventListener('pointerdown',e=>{if(e.target.closest('.nba-node'))return;dragging={x:e.clientX,y:e.clientY,cx:cam.x,cy:cam.y};svg.setPointerCapture(e.pointerId);});
+  svg.addEventListener('pointermove',e=>{if(!dragging)return;cam.x=dragging.cx+e.clientX-dragging.x;cam.y=dragging.cy+e.clientY-dragging.y;graph.setAttribute('transform',`translate(${cam.x},${cam.y}) scale(${cam.k})`);});
+  svg.addEventListener('pointerup',()=>dragging=null);svg.addEventListener('pointercancel',()=>dragging=null);
+  svg.addEventListener('keydown',e=>{if(e.target!==svg)return;const delta=80;if(e.key==='ArrowDown')cam.y-=delta;else if(e.key==='ArrowUp')cam.y+=delta;else if(e.key==='ArrowRight')cam.x-=delta;else if(e.key==='ArrowLeft')cam.x+=delta;else return;e.preventDefault();render();});
+  new ResizeObserver(entries=>{width=entries[0].contentRect.width;height=entries[0].contentRect.height;svg.setAttribute('viewBox',`0 0 ${width} ${height}`);render();}).observe(svg);
+  window.addEventListener('openai:set_globals',e=>{const saved=e.detail?.globals?.widgetState?.modelContent;const g=groups.find(g=>g.id===saved?.branch);if(g){active=g;$('#nba-branch').value=g.id;render();detail(null);}});
+  render();detail(null);
+})();
+</script>

@@ -4,6 +4,52 @@ A local React prototype for exploring **real completed-game ESPN data**.
 All 30 teams are selectable in the horizontal band above the comparison.
 No API key or paid subscription is needed for the current integration.
 
+## Browse the data map
+
+Open [docs/data-map.html](docs/data-map.html) directly in your browser and bookmark
+it. No app server or internet connection is required. Search individual fields,
+open branches, drag to pan, and zoom to see source → category → attribute.
+The map distinguishes displayed, saved-but-hidden, calculated and experimental
+fields. It is a manually reviewed planning snapshot, not a live view of the code
+or database. Its last-reviewed date is shown in the map.
+
+The editable inventory and diagram are in
+[docs/data-map.fragment.html](docs/data-map.fragment.html). Update that source
+and regenerate the standalone page together when capabilities change.
+
+## Choose displayed statistics
+
+Open **Choose stats** below the filters. The original five metrics remain the
+default; selectable additions are steals, free throws made/attempted/%
+and three-pointers made/attempted/%, plus team/game lead changes. The selection
+is retained in this browser and applies to team summaries/logs and player
+details/logs. Roster previews keep their compact minutes/points/assists columns.
+
+Counts show per-game averages in summaries and exact values in logs. Shooting
+percentages use combined makes divided by combined attempts. No attempts,
+missing source data or invalid shooting values display **—**. Lead changes
+describes the whole game and is not a player metric. Added team-quarter metrics
+are enabled when attribution and reconciliation checks pass; unavailable values
+retain explanations below the logs. Player metrics remain full-game only. Plans and review
+gates are maintained in [docs/ROADMAP.md](docs/ROADMAP.md).
+
+## Current checkpoint
+
+Selectable full-game statistics and expanded team-quarter statistics are
+implemented and interface-reviewed. The latest verification passed **41 offline
+tests** and the production build. See [team-quarter validation and limitations](docs/team-quarter-stats-review.md).
+
+Availability is metric-specific: full-game reconciliation and intermediate score
+checks can withhold quarter values, particularly three-point attempts/percentages
+and lead changes. The interface explains withheld values; these checks do not
+independently certify provider accuracy. Player-quarter stats/minutes and the
+defender matchup retrieval issue remain unresolved.
+
+The next planned work is a separate custom-layout prototype branch after this
+checkpoint is committed and pushed. The current default layout remains the
+baseline. Planned scope: selectable draggable/resizable cards, grid snapping,
+and named browser-saved layouts, with refreshed data independent of arrangement.
+
 ## Share or run a fresh copy
 
 Install Node.js 24, then open a terminal where you want the project:
