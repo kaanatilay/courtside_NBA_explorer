@@ -2,8 +2,12 @@
 
 Implemented and interface-reviewed November 3, 2026 on `custom-stats-layout`.
 Initial checkpoint reviewed and pushed; the branch has not been merged into
-`main`. Customization steps 1 and 2A are user-reviewed; 2B is implemented and user-reviewed. The five-step
-tracker lives in [ROADMAP.md](ROADMAP.md).
+`main`. All five customization steps are implemented and user-reviewed.
+Steps 1–2 were pushed at v.12; steps 3–5 are ready for the next user-run Git
+checkpoint. See [ROADMAP.md](ROADMAP.md) and [card-editor.md](card-editor.md).
+Default template loading now restores outer size and contents; Keep current card
+size is explicit. Apply/Cancel and Undo cover both. Overlap previews warn without
+moving neighbors or changing group membership.
 
 ## Behavior and boundaries
 
@@ -17,8 +21,10 @@ cards, not independently filtered team/player cards.
 Cards are added independently of Choose stats and may repeat a statistic. Each
 card displays both selected teams' current sample averages/percentages, using the
 same missing-aware calculation functions as Default. Values are not saved into
-layouts. Per-card filters, style customization and calculated links are not
-implemented. Connections are visual, undirected and update with movement/resize.
+layouts. Edit card can replace the original display with multiple inner blocks,
+each bound to a metric and team slot(s), sharing current comparison filters.
+Colors, per-card filters and calculated links are not implemented. Connections
+are visual, undirected and update with movement/resize.
 Remove card also removes attached lines; individual lines can be removed below
 the canvas. Up to 100 cards are supported per layout. Grid snapping is 20 units;
 independent cards can still overlap through resizing/keyboard movement or when
@@ -82,11 +88,11 @@ future scope.
 `src/CustomWorkspace.jsx` handles the editor and cards. `src/layout.js` validates
 stored definitions, snaps/places cards, and maintains connections. Invalid keys,
 bad coordinates and dangling/repeated links are discarded. A saved object holds
-only layout identifiers/name, cards with metric/position/dimensions, visual links
+only layout identifiers/name, cards with metric/position/dimensions/optional blocks, visual links
 and groups containing card IDs. Legacy layouts get an empty groups collection;
 invalid, duplicate or dangling memberships are discarded.
 
-52 offline tests and build passed for customization step 2B. Model tests cover repeated-stat identities,
+Latest verification: 97 offline tests and build passed through step 5B. Model tests cover repeated-stat identities,
 storage round trip, bad browser data, missing keys, dangling/duplicate lines,
 card removal, resize bounds/legacy migration, single-action gesture history,
 undo restoring removed connections, redo branching and size-aware placement.
@@ -143,4 +149,14 @@ actual React interface rather than adding tests that duplicate the same helpers.
 13. Turn Magnetic snapping off (or hold Shift while dragging) and overlap two
     ungrouped cards. They should remain independent. Turn it back on to snap.
 
-Steps 1–2 are user-reviewed and ready for manual commit/push. Next: plan the inner card editor in step 3.
+All five steps are now implemented and user-reviewed: resize/history, magnetic
+and editable groups, multi-block card designs/templates, colors/readability,
+card purposes and shooting makes/misses donuts. Donut counts are selected-sample
+totals; number/bar counts remain per-game averages. Quarter/sample filters are
+shared with Default; incomplete shooting samples show a reason without a ring.
+
+See [card-editor.md](card-editor.md) and [appearance.md](appearance.md) for
+controls and verification. The panel/card-tool redesign remains a separately
+planned follow-up. Data verification, player-quarter research and the defender
+matchup issue remain open. This presentation milestone does not certify source
+accuracy or complete historical coverage. No automatic commit/push or merge.

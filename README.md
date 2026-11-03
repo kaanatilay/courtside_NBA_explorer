@@ -36,6 +36,36 @@ separating them; Confirm locks the arrangement and Cancel restores it. A confirm
 session is one Undo action. Save afterward to keep it across reloads. Turn off
 Magnetic snapping or hold Shift while dragging to bypass magnetic grouping.
 
+Use **Edit card** to design its interior: add value, label and horizontal bar
+blocks, bind each to a statistic and Team A/Team B/both, then move/resize them.
+Apply changes the open layout as one Undo action; Cancel keeps the previous
+design. Save afterward to retain it. Existing cards keep their original display
+until Apply. If the interior is full, enlarge the outer card first. Applied
+content limits how far that outer card can shrink. See [card editor](docs/card-editor.md).
+For precise inner positioning, use the X/Y/Width/Height fields (Enter or blur to
+apply), optional 8 px pointer grid and alignment guides. Arrows move/resize by
+1 px; Shift+arrows use 8 px. Numeric and keyboard input bypass snapping.
+Duplicate the active block or move it forward/backward through paint layers.
+Expand **Arrange blocks** to select several blocks, align their edges/centers or
+apply equal horizontal/vertical gaps. Fields and drag handles still edit one
+active block. If inner content blocks outer resizing, the app explains its minimum.
+Choose a block visualization (number, label, horizontal/vertical bars), toggle
+labels/values and set 0–3 decimal places. **Card templates** saves named reusable
+designs locally; load one as an independent working copy, then Apply and Save the
+workspace. Loading defaults to **Use template card size**, restoring outer size
+and inner design together. **Keep current card size** retains the target frame
+and checks fit. The editor previews overlaps. Apply/Cancel and Undo cover size
+and content together. Template saves happen immediately and survive Cancel;
+loading only affects the draft. Labels/bars retain their actual statistic bindings.
+
+**Edit card → Card colors** provides background/border presets, a native picker,
+hex entry and individual/all resets. **Workspace colors** previews the canvas
+background with Apply/Cancel. Applied colors are undoable and saved with named
+layouts; old layouts keep their original palette. Background overrides now get
+automatic readable text/bar colors and contrast feedback. Templates save card
+colors; legacy templates without colors retain the destination palette.
+See [appearance controls](docs/appearance.md).
+
 Enter a name and Save. Open named layouts through Saved layout, update them
 with Save, or create an independent version with Save a copy. New blank starts
 another layout. Layouts are stored per browser and origin (including port), not
@@ -63,7 +93,7 @@ gates are maintained in [docs/ROADMAP.md](docs/ROADMAP.md).
 
 Selectable full-game statistics, expanded team-quarter statistics and the first
 custom workspace are implemented and interface-reviewed. Latest verification:
-**52 offline tests** and the production build passed, alongside browser checks
+**97 offline tests** and the production build passed, alongside browser checks
 for the custom workspace. See [team-quarter validation and limitations](docs/team-quarter-stats-review.md)
 and [workspace behavior and review](docs/custom-workspace.md).
 
@@ -73,14 +103,21 @@ and lead changes. The interface explains withheld values; these checks do not
 independently certify provider accuracy. Player-quarter stats/minutes and the
 defender matchup retrieval issue remain unresolved.
 
-The prototype lives on `custom-stats-layout`; Default remains available. Its
-cards support resizing/Undo/Redo (step 1 reviewed) and magnetic groups
-(step 2A reviewed). Edit group with Confirm/Cancel and snap bypass are built
-in step 2B and user-reviewed. Steps 1–2 are ready for the Git checkpoint.
+The prototype lives on `custom-stats-layout`; Default remains available.
+All five customization steps are implemented and user-reviewed: resize/history, magnetic
+and editable groups, multiple inner blocks with arrangement tools, reusable
+card templates, custom colors/readability, and explicit card purposes.
+Step 5B is implemented and user-reviewed: free-throw and three-point
+makes/misses donut blocks. Each team has its own attempt pool; donut counts are
+**selected-sample totals**, while number/bar counts remain per-game averages.
+No attempts or incomplete shooting samples show an explanation without a ring.
+Donuts use existing full-game or checked team-quarter data; no retrieval changes.
+
 The [five-step progress tracker](docs/ROADMAP.md#customization-progress--five-steps)
-covers magnetic groups, inner card editing, colors and richer card purposes.
-The remaining steps and export/import are not implemented. Saved layouts remain
-local to each browser, not shared through Git.
+and [card editor guide](docs/card-editor.md) cover behavior and review steps.
+The five-step functional milestone is complete and user-reviewed. The panel/card-tool
+redesign and export/import remain future work. Saved layouts/templates are local
+to each browser, not shared through Git.
 
 ## Share or run a fresh copy
 
@@ -199,6 +236,10 @@ Browser selections → /api/comparison or /api/player
 - `src/main.jsx`: controls, loading/errors, team comparisons and player details.
   Cancels superseded browser requests so old responses cannot replace new ones.
 - `src/styles.css`: responsive glass styling and accessible control states.
+- `src/CustomWorkspace.jsx`, `src/layout.js`: canvas, group/card transactions,
+  saved layout definitions and Undo/Redo.
+- `src/CardEditor.jsx`, `src/CardContent.jsx`, `src/cardDesign.js`: disposable
+  card-design editor, shared live renderer, block validation and geometry.
 
 No extra package was required for the data service: Node provides HTTP fetching,
 file storage and the test runner. The optional Google Fonts stylesheet needs
@@ -298,3 +339,9 @@ against saved games and manually tallied periods in `server/fixtures/`.
 `research/data-source-findings.md` retains the
 earlier investigation; its description of an unchanged demo refers to that
 earlier milestone, before this integration.
+
+Custom card purposes (step 5A) are user-reviewed: Single team, Team comparison,
+and Related statistics, with Flexible mode for legacy mixed bindings. Set purpose
+and team in Edit card; choose each block statistic below. Main filters still
+control the data sample. Purpose persists in layouts/templates and joins Undo.
+Shooting makes/misses charts (5B) are user-reviewed; the panel redesign remains future work.

@@ -72,3 +72,86 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .workspace-group.editing{border:2px dashed #d4ed96;background:#b9db8b12}
 .workspace-group-toolbar button:disabled,.workspace-card-handle:disabled,.workspace-card-actions button:disabled{opacity:.4;cursor:default}
 .workspace-edit-bar{position:sticky;top:12px;z-index:5}
+/* Applied inner designs share one coordinate system with the modal preview. */
+.workspace-card-designed .workspace-card-handle{height:42px;flex:0 0 42px}
+.workspace-card-designed .workspace-card-actions{height:40px;flex:0 0 40px;align-items:center}
+.card-design-content{position:relative;flex:1;min-height:0;overflow:hidden}
+.card-design-block{position:absolute;overflow:hidden;box-sizing:border-box}
+.card-design-empty{display:block;padding:12px;font-size:12px;color:#a9bca6}
+.card-block-value{height:100%;display:flex;align-items:center;justify-content:space-around;gap:6px;padding:4px 6px}
+.card-block-series{min-width:0;display:grid;gap:3px;flex:1;text-align:center}
+.card-block-series span{font-size:10px;color:#bed29e;line-height:1.2;overflow-wrap:anywhere}
+.card-block-series strong{font-size:21px;font-weight:500;line-height:1.15}.card-block-series small{font-size:10px;color:#a8b9ad}
+.card-block-label{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;color:#d1e2bf;padding:4px;overflow-wrap:anywhere}
+.card-block-bar{height:100%;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:5px 8px}
+.card-block-bar .card-block-series{display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 8px;flex:none;text-align:left}.card-block-bar strong{font-size:14px}
+.card-block-track{grid-column:1/-1;background:#ffffff0d;border-radius:4px;height:6px;overflow:hidden}.card-block-track i{display:block;background:#c4e29c;height:100%}
+.card-editor{width:min(1100px,95vw);max-height:92vh;padding:20px;border:1px solid #9bbd87;border-radius:18px;background:#13251e;color:#e4eddd;box-shadow:0 24px 90px #0009;overflow:auto}
+.card-editor::backdrop{background:#07110bba}.card-editor button,.card-editor select{font:inherit}
+.card-editor-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.card-editor-heading h2{margin:0;font-size:20px;font-weight:500}.card-editor-heading p{font-size:11px;color:#acbfa9}.card-editor-heading>div:last-child{display:flex;gap:8px;flex-wrap:wrap}
+.card-editor-tools{display:flex;align-items:flex-end;flex-wrap:wrap;gap:12px;margin:14px 0}.card-editor-tools label{display:flex;flex-direction:column;gap:5px;font-size:11px;color:#bfd0b7}.card-editor-tools select{background:#1d3429;color:#e4eddd;border:1px solid #ffffff30;border-radius:7px;padding:8px;max-width:270px;font-size:12px}
+.card-editor-position{font-size:11px;color:#b2c5a8;padding:8px}.card-editor-note{font-size:11px;line-height:1.6;color:#b3c7ac}
+.card-editor-scroll{max-height:50vh;overflow:auto;border:1px solid #ffffff25;border-radius:9px;padding:16px;background:#0e1b16}
+.card-editor-canvas{position:relative;box-sizing:content-box;border:1px solid #79906b;background:#1b3025;background-image:radial-gradient(#91ad7233 1px,transparent 1px);background-size:8px 8px}
+.card-editor-block{border:1px dashed #9ab78166;cursor:pointer}.card-editor-block.selected{outline:2px solid #d4ed96;outline-offset:-2px}
+.card-editor-move,.card-editor-resize{position:absolute;border:1px solid #bdd39c77;border-radius:4px;background:#243e2f;color:#e2f1d0;padding:0;width:22px;height:22px;touch-action:none;z-index:1;font-size:12px!important}.card-editor-move{top:0;left:0;cursor:grab}.card-editor-resize{right:0;bottom:0;cursor:nwse-resize}.card-editor button:focus-visible{outline:2px solid #d4ed96;outline-offset:1px}
+/* Precise geometry controls are editor-only and never cover applied cards. */
+.card-editor-geometry{padding:10px;border:1px solid #ffffff20;border-radius:9px;align-items:center}
+.card-editor-tools input[type=number]{width:78px;background:#1d3429;color:#e4eddd;border:1px solid #ffffff40;border-radius:7px;padding:7px;font:inherit;font-size:12px}
+.card-editor-tools .card-editor-check{display:flex;flex-direction:row;align-items:center;gap:6px}.card-editor-check input{accent-color:#c4e29c}
+.card-editor-block.selected{outline:3px solid #d4ed96;outline-offset:-3px;box-shadow:inset 0 0 0 5px #142317}
+.card-editor-move{width:34px;height:24px;background:#294832}.card-editor-resize{width:26px;height:26px;background:#294832}
+.card-editor-block.selected .card-editor-move,.card-editor-block.selected .card-editor-resize{border-color:#e6ffc6;background:#c4e29c;color:#152714;font-weight:700}
+.card-editor-guide{position:absolute;pointer-events:none;z-index:4;background:#72def0}.card-editor-guide.guide-x{top:0;bottom:0;width:1px}.card-editor-guide.guide-y{left:0;right:0;height:1px}
+.card-editor-guide span{position:absolute;left:3px;top:3px;white-space:nowrap;font-size:10px;background:#10343b;color:#a5f2ff;padding:2px 4px;border-radius:3px}
+/* Each block is a paint layer; selection must not secretly raise its z-order. */
+.card-design-block{isolation:isolate}
+.card-editor-block.batch-selected:not(.selected){outline:2px dashed #72def0;outline-offset:-2px}
+.card-editor-arrangement{border:1px solid #ffffff25;border-radius:9px;padding:10px;margin:12px 0;font-size:12px}
+.card-editor-arrangement summary{cursor:pointer;color:#d4e8bd}.card-editor-selection{display:flex;flex-wrap:wrap;gap:10px 16px;max-height:110px;overflow:auto;padding:4px 0}
+.card-editor-selection label{display:flex;align-items:center;gap:6px;font-size:11px;color:#c6dabb}
+.card-editor-heading{position:sticky;top:-20px;z-index:6;background:#13251e;padding:8px 0}
+/* Vertical charts retain the same relative/missing-aware scale as horizontal bars. */
+.card-block-vertical{height:100%;display:flex;gap:8px;padding:6px;align-items:stretch}
+.card-block-vertical .card-block-series{display:flex;flex-direction:column;align-items:center;gap:3px}
+.card-block-vertical .card-block-series strong{font-size:14px}.card-block-vertical .card-block-track{order:1;flex:1;min-height:22px;position:relative;width:60%;max-width:55px;height:auto}
+.card-block-vertical .card-block-track i{position:absolute;bottom:0;width:100%;height:0}.card-block-vertical .card-block-series strong{order:2}
+.card-block-bar .card-block-series>small{grid-column:1/-1;font-size:10px;color:#acbfa9}
+.card-editor-format{border:1px solid #ffffff20;padding:10px;border-radius:9px;align-items:center}.card-editor-format p{flex-basis:100%;margin:0}
+.card-editor-tools input:not([type=checkbox]){background:#1d3429;color:#e4eddd;border:1px solid #ffffff40;border-radius:7px;padding:7px;font:inherit;font-size:12px}
+/* Footprint preview warns about overlap without moving neighboring cards. */
+.card-editor-overlap{border:1px solid #e6ac6b;border-radius:9px;padding:10px;margin:12px 0;background:#9d652312;font-size:12px;color:#f3d5ae}
+.card-editor-overlap p{margin:0 0 8px;line-height:1.5}.card-editor-overlap svg{display:block;width:100%;height:130px;background:#102019;border-radius:6px}
+/* Optional validated color overrides leave the legacy palette unchanged. */
+.workspace-card{background:var(--card-background,#1b3025);border-color:var(--card-border,#5e7a66)}
+.workspace-card-handle{background:var(--card-background,#243d2f)}
+.card-editor-canvas{background-color:var(--card-background,#1b3025);border-color:var(--card-border,#79906b)}
+.color-control{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin:12px 0}.color-control label{display:flex;flex-direction:column;gap:5px;font-size:11px;color:#bfd0b7}
+.color-control select,.color-control input[type=text]{background:#1d3429;color:#e4eddd;border:1px solid #ffffff40;border-radius:7px;padding:8px;font:inherit;font-size:12px}.color-control input[type=text]{width:95px}.color-control input[type=color]{width:48px;height:34px;padding:2px;border:1px solid #ffffff40;background:#1d3429;border-radius:7px;cursor:pointer}
+.color-control-error{font-size:11px;color:#ffd4a3;flex-basis:100%}
+.workspace-appearance-panel{border:1px solid #9ab78177;border-radius:12px;padding:14px;margin:12px 0;background:#172b21}.workspace-appearance-panel p{font-size:11px;color:#b5c7ab;line-height:1.6}.workspace-appearance-panel>button{margin-right:8px}
+/* Derived foregrounds stay local to each card/preview and are never persisted. */
+.workspace-card{color:var(--card-text,inherit)}.card-editor-canvas{color:var(--card-text,#e4eddd)}
+.workspace-card-handle{color:var(--card-text,inherit);border-bottom-color:var(--card-separator,#ffffff18)}
+.workspace-values span,.card-block-series span{color:var(--card-muted,#bed29e)}.workspace-values small,.card-block-series small{color:var(--card-muted,#a8b9ad)}
+.card-block-label{color:var(--card-muted,#d1e2bf)}.workspace-card-actions button{color:var(--card-text,#c4d5c6)}
+.card-block-track{background:var(--card-track,#ffffff0d)}.card-block-track i{background:var(--card-bar,#c4e29c)}
+.card-block-bar .card-block-series>small{color:var(--card-muted,#acbfa9)}.card-design-empty{color:var(--card-muted,#a9bca6)}
+.workspace-resize-handle{background:var(--card-control,#304d3b);color:var(--card-text,#d8e6cf)}.workspace-resize-handle:focus-visible{outline-color:var(--card-focus,#cbef93)}
+.card-editor-block.selected{outline-color:var(--card-focus,#d4ed96);box-shadow:inset 0 0 0 5px var(--card-background,#142317)}
+.card-editor-block.batch-selected:not(.selected){outline-color:var(--card-focus,#72def0)}
+.card-editor-block.selected .card-editor-move,.card-editor-block.selected .card-editor-resize{background:var(--card-focus,#c4e29c);color:var(--card-background,#152714);border-color:var(--card-focus,#e6ffc6)}
+.workspace-viewport{background-image:radial-gradient(var(--workspace-grid,#718b7155) 1px,transparent 1px)}
+.workspace-links line{stroke:var(--workspace-line,#8fba9c)}.workspace-group{border-color:var(--workspace-line,#a6cd9a88)}.workspace-group.editing{border-color:var(--workspace-ink,#d4ed96)}
+.workspace-empty,.workspace-empty span{color:var(--workspace-ink,#d2e0cb)}
+.contrast-feedback{font-size:11px;line-height:1.6;color:#c4d8b7;padding:8px 0}.contrast-feedback p{margin:5px 0}.contrast-feedback button{font-size:11px;margin-left:6px}
+.card-block-donut{height:100%;display:flex;align-items:stretch;gap:8px;padding:5px}
+.shooting-donut-series{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;color:var(--card-text,#e3eddf)}
+.shooting-donut-series>span{font-size:10px;color:var(--card-muted,#bed29e);overflow-wrap:anywhere}
+.shooting-donut-series svg{width:100%;max-width:140px;min-height:0;flex:1;overflow:visible}
+.shooting-donut-series text{fill:currentColor;font-size:12px}
+.donut-made{stroke:var(--card-bar,#c4e29c)}.donut-missed{stroke:var(--card-separator,#64796c)}
+.shooting-donut-series small{font-size:10px;color:var(--card-muted,#bed29e);line-height:1.3}
+.shooting-donut-series small i{display:inline-block;width:7px;height:7px;border:1px solid currentColor}
+.donut-key-made{background:var(--card-bar,#c4e29c)}.donut-key-missed{background:var(--card-separator,#64796c)}
+.shooting-donut-unavailable{font-size:11px;margin:auto;overflow-wrap:anywhere}

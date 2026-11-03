@@ -1,4 +1,7 @@
+import { cleanPurpose, purposeBlocks } from './cardPurpose.js';
 import { fullGameMetrics } from './catalog.js';
+import { cleanBlocks, contentMinimum, designFits } from './cardDesign.js';
+import { cleanCardAppearance, cleanColor } from './appearance.js';
 
 export const layoutStorageKey = 'courtside:custom-layouts:v1';
 export const cardSize = { width: 260, height: 190 };
@@ -8,6 +11,12 @@ export const dimensions = card => ({
   width: dimension(card?.width, cardSize.width, cardLimits.minWidth, cardLimits.maxWidth),
   height: dimension(card?.height, cardSize.height, cardLimits.minHeight, cardLimits.maxHeight),
 });
+// Applied designs establish a minimum outer size. Grow freely; shrinking stops
+// at the content edges rather than silently clipping or relocating blocks.
+export function resizeDimensions(card, patch) {
+  const size = dimensions({ ...card, ...patch }), min = contentMinimum(card);
+  return { width: Math.max(size.width, Math.ceil(min.width/10)*10), height: Math.max(size.height, Math.ceil(min.height/10)*10) };
+}
 export const blankLayout = () => ({ name: '', cards: [], links: [], groups: [] });
 const validMetric = key => fullGameMetrics.some(([id]) => id === key);
 export const snap = value => Math.max(0, Math.min(10000, Math.round(value / 20) * 20));
@@ -19,7 +28,14 @@ export function cleanLayout(value) {
   const cards = (Array.isArray(value?.cards) ? value.cards : []).filter(c => {
     if (!c || typeof c.id !== 'string' || !c.id || seen.has(c.id) || !validMetric(c.metric) || !Number.isFinite(c.x) || !Number.isFinite(c.y)) return false;
     seen.add(c.id); return true;
-  }).slice(0, 100).map(c => ({ id: c.id, metric: c.metric, x: snap(c.x), y: snap(c.y), ...dimensions(c) }));
+  }).slice(0, 100).map(c => {
+    const card = { id: c.id, metric: c.metric, x: snap(c.x), y: snap(c.y), ...dimensions(c) };
+    const purpose = cleanPurpose(c);
+    const rawBlocks = cleanBlocks(c.blocks, card);
+    const blocks = rawBlocks === null ? null : purposeBlocks(rawBlocks,purpose);
+    const appearance=cleanCardAppearance(c.appearance);
+    return {...card,...purpose,...(blocks===null?{}:{blocks}),...(appearance?{appearance}:{})};
+  });
   const ids = new Set(cards.map(c => c.id)), edges = new Set();
   const links = (Array.isArray(value?.links) ? value.links : []).filter(l => {
     if (!l || !ids.has(l.from) || !ids.has(l.to) || l.from === l.to) return false;
@@ -37,7 +53,8 @@ export function cleanLayout(value) {
     groupIds.add(g.id); members.forEach(id => grouped.add(id));
     return [{ id: g.id, cards: members }];
   });
-  return { name: typeof value?.name === 'string' ? value.name.slice(0, 80) : '', cards, links, groups };
+  const background=cleanColor(value?.background);
+  return { name: typeof value?.name === 'string' ? value.name.slice(0, 80) : '', cards, links, groups, ...(background?{background}:{}) };
 }
 
 export function readLayoutLibrary(storage) {
@@ -122,6 +139,7 @@ export function magneticPreview(layout, movingId) {
         x: beside ? Math.round((side === 'right' ? target.x + target.width + 20 : target.x - moving.width - 20)/20)*20 : target.x,
         y: beside ? target.y : Math.round((side === 'below' ? target.y + target.height + 20 : target.y - moving.height - 20)/20)*20 };
       if (card.x < 0 || card.y < 0 || card.x > 10000 || card.y > 10000) continue;
+      if (!designFits(card)) continue;
       if (layout.cards.some(c => c.id !== movingId && overlaps(card, c))) continue;
       return { targetId: target.id, card, side };
     }
