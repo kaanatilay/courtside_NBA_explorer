@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { teams, metrics, fullGameMetrics, cleanMetricSelection, selectedMetrics, percentagePairs, metricAbbreviations, currentSeason } from './catalog.js';
 import { rowsFor, playersFor, average, metricValue } from './stats.js';
 import './styles.css';
+import CustomWorkspace from './CustomWorkspace.jsx';
 
 const number = value => Number.isFinite(value) ? value.toFixed(1) : '—';
 const formatMetric = (value, key, summary = false) => !Number.isFinite(value) ? '—'
@@ -208,6 +209,7 @@ function App() {
   const [season, setSeason] = useState(String(currentSeason()));
   const [quarter, setQuarter] = useState('all');
   const [view, setView] = useState('teams');
+  const [layoutMode, setLayoutMode] = useState('default');
   const [player, setPlayer] = useState(null);
   const [refresh, setRefresh] = useState(0);
   const [metricSelection, setMetricSelection] = useState(readMetricSelection);
@@ -227,7 +229,7 @@ function App() {
   // Close details when changing the sample, so a player cannot retain another
   // team's or season's context. Quarter changes are a browser-only calculation.
   function changeFilter(setter, value) { setter(value); setPlayer(null); }
-  function selectView(value) { setView(value); setPlayer(null); if (value === 'players') setQuarter('all'); }
+  function selectView(value) { setView(value); setPlayer(null); if (value === 'players') { setQuarter('all'); setLayoutMode('default'); } }
 
   return <div className="app-shell">
     <header className="topbar"><a className="brand" href="#"><span className="brand-mark">◉</span> courtside<span className="brand-light"> / explorer</span></a><span className="demo-pill"><span /> REAL DATA · ESPN</span></header>
@@ -236,24 +238,26 @@ function App() {
       <div className="demo-note"><span>ⓘ</span><p><strong>Real completed-game data from ESPN.</strong> Team quarter counts are calculated from play-by-play and checked against game totals. Selected regular season only. Dates use the NBA schedule’s Eastern Time.</p></div>
       <TeamBand left={left} right={right} onSelect={(slot, id) => { if (id !== (slot === 'left' ? right : left)) changeFilter(slot === 'left' ? setLeft : setRight, id); }} />
       <div className="team-grid"><TeamCard id={left} label="Team A" /><div className="versus">VS</div><TeamCard id={right} label="Team B" /></div>
+      <div className="layout-mode-toolbar"><span>Stats display</span><div className="view-switch" role="group" aria-label="Statistics layout">{['default','custom'].map(mode => <button key={mode} aria-pressed={layoutMode === mode} className={layoutMode === mode ? 'active' : ''} onClick={() => { setLayoutMode(mode); if (mode === 'custom') { setView('teams'); setPlayer(null); } }}>{mode === 'default' ? 'Default' : 'Custom workspace'}</button>)}</div></div>
       <section className="filterbar" aria-label="Comparison filters">
         <label>Season<select aria-label="Season" value={season} onChange={e => changeFilter(setSeason, e.target.value)}>{seasons.map(year => <option key={year} value={year}>{seasonLabel(year)}</option>)}</select></label>
         <label>Game sample<select aria-label="Game sample" value={mode} onChange={e => changeFilter(setMode, e.target.value)}><option value="matchup">Against each other</option><option value="recent">All opponents</option></select></label>
         <label>Look back<select aria-label="Look back" value={limit} onChange={e => changeFilter(setLimit, e.target.value)}><option value="3">Last 3 games</option><option value="5">Last 5 games</option><option value="10">Last 10 games</option></select></label>
         <div className="quarter-control"><span className="filter-label">Period {view === 'players' && '· full game only'}</span><div className="segmented">{['all', '1', '2', '3', '4'].map(q => <button key={q} aria-pressed={quarter === q} disabled={view === 'players' && q !== 'all'} title={view === 'players' && q !== 'all' ? 'Player quarter data is not verified yet.' : undefined} className={quarter === q ? 'active' : ''} onClick={() => setQuarter(q)}>{q === 'all' ? 'Full game' : `Q${q}`}</button>)}</div></div>
       </section>
-      <MetricChooser selection={metricSelection} onChange={setMetricSelection} player={view === 'players'} quarter={quarter} saved={selectionSaved} />
+      {layoutMode === 'default' && <MetricChooser selection={metricSelection} onChange={setMetricSelection} player={view === 'players'} quarter={quarter} saved={selectionSaved} />}
       <section className="results" aria-busy={comparison.loading}>
         <div className="section-heading"><div><p className="eyebrow">YOUR COMPARISON</p><h2>{view === 'teams' ? 'The matchup, at a glance.' : 'Meet the difference makers.'}</h2></div><div className="view-switch">{['teams', 'players'].map(tab => <button key={tab} className={view === tab ? 'active' : ''} aria-pressed={view === tab} onClick={() => selectView(tab)}>{tab === 'teams' ? 'Team stats' : 'Players'}</button>)}</div></div>
         <div className="data-toolbar"><p className="sample-caption">{quarter === 'all' ? 'Full-game (includes OT)' : `Q${quarter}`} averages · {mode === 'matchup' ? 'Head-to-head games' : 'Recent games against all opponents'} · Last {limit} · {seasonLabel(Number(season))}</p></div>
         <LeagueRefresh onUpdated={() => setRefresh(value => value + 1)} />
         {comparison.loading && <p className="state-message" role="status">Loading real game records… First-time requests can take a little longer.</p>}
         {comparison.error && <div className="state-message error" role="alert"><strong>Couldn’t load the comparison.</strong><p>{comparison.error}</p><button className="close-button" onClick={() => setRefresh(value => value + 1)}>Retry</button></div>}
+        <div hidden={layoutMode !== 'custom'}><CustomWorkspace ids={ids} rows={rows} loading={comparison.loading} error={comparison.error} period={quarter} /></div>
         {comparison.data && <>
           <SavedDataStatus data={comparison.data} />
           <div className="sample-grid">{ids.map((id, i) => <SampleSummary key={id} id={id} rows={rows[i]} limit={limit} />)}</div>
           {quarter !== 'all' && <p className="availability-note"><strong>Checked team-quarter statistics.</strong> Points come from ESPN’s period scores. Other counts use play-by-play and reconcile to full-game values; shooting % uses combined quarter makes ÷ attempts. Lead changes follow the last non-tied leader across quarter boundaries. “—” means no attempts, missing data or a failed check. Missing observations withhold the sample average.</p>}
-          {view === 'teams' ? <>
+          {view === 'teams' && layoutMode === 'default' ? <>
             {!displayMetrics.length && <p className="state-message">No selected stats apply to this view. Open Choose stats to select metrics.</p>}
             <div className="comparison-table"><div className="stat-header"><span>{left}</span><span>PER GAME / SHOOTING %</span><span>{right}</span></div>{displayMetrics.map(([key, label]) => {
               const values = rows.map(items => average(items, key));
@@ -261,11 +265,11 @@ function App() {
               return <div className="stat-row" key={key}><strong style={{ color: teamFor(left).color }}>{formatMetric(values[0], key, true)}</strong><div><span>{label}</span>{showBar && <div className="balance"><i style={{ width: `${values[0] / (values[0] + values[1]) * 100}%`, background: teamFor(left).color }} /><i style={{ flex: 1, background: teamFor(right).color }} /></div>}</div><strong style={{ color: teamFor(right).color }}>{formatMetric(values[1], key, true)}</strong></div>;
             })}</div>
             <div className="history-grid">{ids.map((id, index) => <GameHistory key={id} title={`${id} · included games`} rows={rows[index]} quarter={quarter} displayMetrics={displayMetrics} />)}</div>
-          </> : <>
+          </> : view === 'players' ? <>
             <p className="availability-note">Roster averages below use appearances within the team sample above. Click a player to search for their own last {limit} appearances with this team and opponent filter, within {seasonLabel(Number(season))}.</p>
             <div className="roster-grid">{ids.map((id, index) => <Roster key={id} id={id} games={samples[index]} selected={player} onSelect={selected => setPlayer({ ...selected, teamId: id })} />)}</div>
             {player ? <PlayerDetails key={`${player.teamId}-${player.id}`} player={player} opponent={player.teamId === left ? right : left} mode={mode} limit={limit} season={season} refresh={refresh} displayMetrics={displayMetrics} onClose={() => setPlayer(null)} /> : <div className="detail-hint">↗ Select a player to explore their last appearances and dated game log.</div>}
-          </>}
+          </> : null}
         </>}
       </section>
       <footer><span>COURTSIDE <span className="muted">/ A different perspective.</span></span><span>Local prototype · ESPN data · No predictions</span></footer>

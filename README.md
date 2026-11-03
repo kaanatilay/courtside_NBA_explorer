@@ -17,6 +17,21 @@ The editable inventory and diagram are in
 [docs/data-map.fragment.html](docs/data-map.fragment.html). Update that source
 and regenerate the standalone page together when capabilities change.
 
+## Custom stats workspace
+
+Use **Default / Custom workspace** below the selected teams to switch displays.
+Custom starts with a blank team-comparison canvas. Choose a statistic and Add
+card; repeated cards are allowed. Drag headers to move/snap cards, drag the
+background to pan, and use +/− to zoom. Connect two cards with their Connect
+buttons to add a visual line. Connections do not change calculations or filters.
+
+Enter a name and Save. Open named layouts through Saved layout, update them
+with Save, or create an independent version with Save a copy. New blank starts
+another layout. Layouts are stored per browser and origin (including port), not
+in Git or the game database. Save before reloading/closing. Team/filter changes
+update values without moving cards; Default retains the existing interface.
+Player views currently use Default. See [workspace review](docs/custom-workspace.md).
+
 ## Choose displayed statistics
 
 Open **Choose stats** below the filters. The original five metrics remain the
@@ -35,9 +50,11 @@ gates are maintained in [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## Current checkpoint
 
-Selectable full-game statistics and expanded team-quarter statistics are
-implemented and interface-reviewed. The latest verification passed **41 offline
-tests** and the production build. See [team-quarter validation and limitations](docs/team-quarter-stats-review.md).
+Selectable full-game statistics, expanded team-quarter statistics and the first
+custom workspace are implemented and interface-reviewed. Latest verification:
+**44 offline tests** and the production build passed, alongside browser checks
+for the custom workspace. See [team-quarter validation and limitations](docs/team-quarter-stats-review.md)
+and [workspace behavior and review](docs/custom-workspace.md).
 
 Availability is metric-specific: full-game reconciliation and intermediate score
 checks can withhold quarter values, particularly three-point attempts/percentages
@@ -45,10 +62,10 @@ and lead changes. The interface explains withheld values; these checks do not
 independently certify provider accuracy. Player-quarter stats/minutes and the
 defender matchup retrieval issue remain unresolved.
 
-The next planned work is a separate custom-layout prototype branch after this
-checkpoint is committed and pushed. The current default layout remains the
-baseline. Planned scope: selectable draggable/resizable cards, grid snapping,
-and named browser-saved layouts, with refreshed data independent of arrangement.
+The prototype lives on `custom-stats-layout`; Default remains available. Its
+cards have a fixed size/style for now. Further customization, resizing, grouping
+and layout export/import are candidates after this checkpoint, not implemented
+features. Saved layouts remain local to each browser, not shared through Git.
 
 ## Share or run a fresh copy
 

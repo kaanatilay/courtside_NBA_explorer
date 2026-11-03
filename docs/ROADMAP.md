@@ -26,16 +26,20 @@ varies by metric/game. See team-quarter-stats-review.md for results and limits.
 
 ## Checkpoint and custom-layout branch
 
-Both statistics milestones have been completed and interface-reviewed. The
-current work is ready for the Git checkpoint; commit and push are manual steps.
-After that checkpoint, create a separate
-layout branch for a prototype: default/custom switch, draggable/resizable stat
-cards, grid snapping/spacing, and named browser-saved layouts. Data updates must
-not reset card arrangements or freeze old values into a saved layout. Evaluate
-grouping, panning/zooming and layout export/import after the initial prototype.
-The custom-layout branch has not yet been created. Latest verification: 41 tests
-and production build passed. Quarter data limitations remain documented even
-though the interface milestone has been reviewed.
+Both statistics milestones were completed, interface-reviewed and pushed before
+starting the layout prototype. Layout definitions stay independent of data:
+updates must not reset card arrangements or freeze values into a saved layout.
+The statistics checkpoint was pushed and `custom-stats-layout` created locally
+and remotely. The first custom workspace is implemented and interface-reviewed:
+Default/Custom toggle; blank canvas; add/remove repeated stat cards; grid-snapped
+dragging; pan/zoom; visual links; named browser-saved layouts, updates and copies.
+44 tests and build passed. Browser checks exercised card addition, connection,
+keyboard/pointer movement, naming/save/copy, reload/reopening and quarter changes.
+Card resizing/style customization, automatic grouping and export/import remain
+future work. Quarter data limitations remain documented regardless of layout.
+This first layout checkpoint is ready for manual commit/push on
+`custom-stats-layout`. It has not been merged into `main`. Further customization
+will be planned after the checkpoint, using this prototype as the baseline.
 
 ## Continuing quality and retrieval work
 
