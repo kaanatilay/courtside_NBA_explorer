@@ -35,11 +35,47 @@ Default/Custom toggle; blank canvas; add/remove repeated stat cards; grid-snappe
 dragging; pan/zoom; visual links; named browser-saved layouts, updates and copies.
 44 tests and build passed. Browser checks exercised card addition, connection,
 keyboard/pointer movement, naming/save/copy, reload/reopening and quarter changes.
-Card resizing/style customization, automatic grouping and export/import remain
-future work. Quarter data limitations remain documented regardless of layout.
-This first layout checkpoint is ready for manual commit/push on
-`custom-stats-layout`. It has not been merged into `main`. Further customization
-will be planned after the checkpoint, using this prototype as the baseline.
+The first layout checkpoint was reviewed and pushed on `custom-stats-layout`.
+It has not been merged into `main`. Quarter data limitations remain documented
+regardless of layout. Export/import remains future scope.
+
+## Customization progress — five steps
+
+Implement one step at a time, test and explain it, then pause for interface
+review before the next. Layout changes must preserve live values and older
+saved layouts. Quality, verification and player-quarter research remain on the
+broader roadmap rather than being replaced by presentation work.
+
+| Step | Scope and review outcome | Status |
+| --- | --- | --- |
+| 1 | Undo/Redo; resize cards with safe minimum sizes; persist dimensions. One pointer gesture is one undo action. | Implemented and user-reviewed. |
+| 2 | Magnetic grouping with a snap preview, size matching, group movement, individual adjustment and explicit ungrouping. Grouping is distinct from visual connection lines. | 2A user-reviewed. 2B built: Edit group/Confirm/Cancel, independent member move/resize, snap bypass; 52 tests/build passed and browser checked; user-reviewed. Ready for the steps 1–2 Git checkpoint. |
+| 3 | Card editor with multiple movable/resizable inner blocks: labels, numbers and comparison bars first; Apply/Cancel. Keep blocks within the outer card; avoid an arbitrary single-block limit. | Planned. |
+| 4 | Frame, card and workspace colors with presets/custom picker, reset and readable contrast guidance. | Planned. |
+| 5 | Single-team, comparison and related-stat card purposes; compatible chart choices including shooting makes/misses. Distinguish data/sample settings from presentation. | Planned; exact initial chart scope to agree before implementation. |
+
+Suggested Git checkpoints: after steps 1–2 are reviewed, then after the inner
+editor, followed by colors and richer card purposes. No automatic commit/push.
+Future styling can extend shape and visualization choices without changing
+retrieval or silently deriving unsupported statistics.
+
+Step 2A details: overlap an ungrouped card with a target, preview a free adjacent
+slot, then release. Side-by-side matches height; stacked matches width. Prefer
+the approached side, try other sides when blocked, and decline if no free slot
+fits. Groups can receive more ungrouped cards; existing groups do not merge by
+dragging. Group handle/member headers move the unit; Arrange retains internal
+offsets. Ungroup retains positions, sizes and independent visual connections.
+Each gesture/action is undoable; named layouts retain membership.
+
+Step 2B: Edit group opens a separate working copy for individual member movement
+and resize. The outline follows the members; they may overlap or spread apart
+without losing membership. Confirm locks the group and records the whole session
+as one undo action; Cancel leaves the original layout/history unchanged. Saving,
+other layout edits and Undo/Redo pause until Confirm/Cancel. Named layouts save
+the confirmed arrangement, not an editing/unlocked mode. Snapping is paused while
+editing; otherwise the Magnetic snapping checkbox or Shift-drag bypasses magnets.
+The checkbox is temporary workspace state, not part of a saved layout. Step 3
+is next to plan after the reviewed steps 1–2 Git checkpoint; steps 4–5 remain unchanged.
 
 ## Continuing quality and retrieval work
 

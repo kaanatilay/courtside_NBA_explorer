@@ -24,6 +24,17 @@ Custom starts with a blank team-comparison canvas. Choose a statistic and Add
 card; repeated cards are allowed. Drag headers to move/snap cards, drag the
 background to pan, and use +/− to zoom. Connect two cards with their Connect
 buttons to add a visual line. Connections do not change calculations or filters.
+Resize cards from their bottom-right corners. Undo/Redo restores layout edits;
+each pointer drag is one action. Sizes are saved, and older layouts remain usable.
+History resets when opening another layout or reloading; save restored changes
+to keep them. Pan/zoom and data updates are separate from edit history.
+Overlap an ungrouped card with another to preview a magnetic snap, then release
+to group. Side-by-side cards match height; stacked cards match width. Use the
+group handle to move them together, or Ungroup to separate them. Groups are saved
+and undoable. Choose Edit group to move/resize individual members without
+separating them; Confirm locks the arrangement and Cancel restores it. A confirmed
+session is one Undo action. Save afterward to keep it across reloads. Turn off
+Magnetic snapping or hold Shift while dragging to bypass magnetic grouping.
 
 Enter a name and Save. Open named layouts through Saved layout, update them
 with Save, or create an independent version with Save a copy. New blank starts
@@ -52,7 +63,7 @@ gates are maintained in [docs/ROADMAP.md](docs/ROADMAP.md).
 
 Selectable full-game statistics, expanded team-quarter statistics and the first
 custom workspace are implemented and interface-reviewed. Latest verification:
-**44 offline tests** and the production build passed, alongside browser checks
+**52 offline tests** and the production build passed, alongside browser checks
 for the custom workspace. See [team-quarter validation and limitations](docs/team-quarter-stats-review.md)
 and [workspace behavior and review](docs/custom-workspace.md).
 
@@ -63,9 +74,13 @@ independently certify provider accuracy. Player-quarter stats/minutes and the
 defender matchup retrieval issue remain unresolved.
 
 The prototype lives on `custom-stats-layout`; Default remains available. Its
-cards have a fixed size/style for now. Further customization, resizing, grouping
-and layout export/import are candidates after this checkpoint, not implemented
-features. Saved layouts remain local to each browser, not shared through Git.
+cards support resizing/Undo/Redo (step 1 reviewed) and magnetic groups
+(step 2A reviewed). Edit group with Confirm/Cancel and snap bypass are built
+in step 2B and user-reviewed. Steps 1–2 are ready for the Git checkpoint.
+The [five-step progress tracker](docs/ROADMAP.md#customization-progress--five-steps)
+covers magnetic groups, inner card editing, colors and richer card purposes.
+The remaining steps and export/import are not implemented. Saved layouts remain
+local to each browser, not shared through Git.
 
 ## Share or run a fresh copy
 
